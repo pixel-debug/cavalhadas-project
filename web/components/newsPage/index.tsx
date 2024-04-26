@@ -1,5 +1,5 @@
 import { NewsContentProps } from "@/types/types";
-import { CustomImage } from "../Common/image";
+import { CustomImage } from "../common/image";
 
 export const NewsContent = ({ selectedNews, openImage }: NewsContentProps) => {
   return (
