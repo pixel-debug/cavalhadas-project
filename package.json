@@ -1,0 +1,17 @@
+{
+  "name": "cavalhadas-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn workspace server run start\" \"yarn workspace web run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
