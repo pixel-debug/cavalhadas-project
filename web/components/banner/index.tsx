@@ -13,7 +13,7 @@ export const Banner = ({
   return (
     <div className="h-screen">
       {image && (
-        <div className="absolute inset-0 z-0">
+        <div className="bg-black opacity-50 absolute inset-0 z-0">
           <CustomImage src={image} alt={""} objectFit="cover" />
         </div>
       )}

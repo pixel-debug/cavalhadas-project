@@ -13,8 +13,14 @@ export const Header = () => {
     router.push(usedRouters(path));
   };
 
+  const isHomeRoute = router.pathname === "/";
+
   return (
-    <div className="z-40 flex items-center justify-between p-3 pl-5">
+    <div
+      className={`z-40 flex items-center justify-between p-3 pl-5 ${
+        isHomeRoute ? "bg-transparent" : "bg-red-200"
+      }`}
+    >
       <Image
         src={logo}
         alt={""}

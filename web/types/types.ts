@@ -50,7 +50,7 @@ export type BodyProps = {
 
 export type BoxProps = {
   children: ReactNode;
-  title: string;
+  title?: string;
 };
 
 export type CardType = {

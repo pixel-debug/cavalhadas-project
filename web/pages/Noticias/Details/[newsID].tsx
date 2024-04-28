@@ -26,7 +26,7 @@ const NewsDetails = () => {
 
   return (
     selected && (
-      <div className="overflow-auto">
+      <div className="overflow-auto pt-10">
         <Box title="">
           <NewsContent selectedNews={selected} openImage={setModal} />
         </Box>

@@ -4,12 +4,12 @@ import Image from "next/image";
 
 export const FooterComponent = () => {
   return (
-    <div className="mt-10 bg-neutral-100 flex flex-row justify-between p-5">
+    <div className="mt-10 bg-blue-200 flex flex-row justify-between p-5">
       <div className="flex flex-row">
         <div className="lg:w-[40vh] w-1/3">
           <Image src={redKnight} alt="Follow us on Twitter" />
         </div>
-        <div className="pt-10">
+        <div className="xl:pt-10 pt-5">
           <p className="font-itim xl:text-xl text-xm text-neutral-900 mb-2">
             Venha nos ver!
           </p>
