@@ -15,14 +15,14 @@ export const SliderComponent = ({ subjects }: SliderProps) => {
       <div className="w-[100%] pb-10">
         <Slider {...settings} arrows={false}>
           {subjects.map((subject: SliderType, index: number) => (
-            <Item key={index} item={subject} />
+            <Item key={"people -" + index} item={subject} />
           ))}
         </Slider>
       </div>
       <div className="w-[100%] py-10">
         <Slider {...settings} arrows={false}>
           {subjects.map((subject: SliderType, index: number) => (
-            <Item key={index} item={subject} />
+            <Item key={"people -" + index} item={subject} />
           ))}
         </Slider>
       </div>

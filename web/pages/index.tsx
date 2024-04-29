@@ -6,12 +6,13 @@ import { Banner } from "@/components/banner";
 import { CardDeck } from "@/components/common/cards";
 import { Box } from "@/components/common/box";
 import { BannerMockedTitle, BannerMockedText } from "@/utils/texts";
+import { PagesRouters } from "@/types/enums";
 
 export default function Home() {
   const news = newsArray.slice(0, 3);
   const router = useRouter();
   const navigation = () => {
-    router.push(usedRouters("noticias"));
+    router.push(usedRouters(PagesRouters.NEWS_PAGE));
   };
 
   const title = BannerMockedTitle;
@@ -31,7 +32,7 @@ export default function Home() {
       <Box title={"Últimas noticias"}>
         <div className="flex flex-col items-center">
           <CardDeck news={news} />
-          <div className="xl:w-1/6 w-1/4 mt-10">
+          <div className="xl:w-1/6 w-1/3 mt-10">
             <Button text={"Ver mais"} action={navigation} />
           </div>
         </div>

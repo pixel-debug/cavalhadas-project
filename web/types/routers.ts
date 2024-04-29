@@ -1,12 +1,14 @@
+import { PagesRouters } from "./enums";
+
 export const usedRouters = (path?: string, target?: number): string => {
   switch (path) {
-    case "noticias-details":
+    case PagesRouters.NEWS_PAGE_DETAILS:
       return `/Noticias/Details/${target}`;
-    case "noticias":
+    case PagesRouters.NEWS_PAGE:
       return "/Noticias";
-    case "quem-somos":
+    case PagesRouters.ABOUT_US_PAGE:
       return "/AboutUs";
-    case "patrocinadores":
+    case PagesRouters.SPONSORS_PAGE:
       return "/Sponsors";
     default:
       return "/";

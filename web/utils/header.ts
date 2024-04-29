@@ -1,16 +1,18 @@
+import { Pages } from "@/types/enums";
+
 const navigators = () => [
   {
-    title: "NOTÍCIAS",
+    title: Pages.NEWS_PAGE,
     path: "",
     navigation: "noticias",
   },
   {
-    title: "QUEM SOMOS",
+    title: Pages.ABOUT_US_PAGE,
     path: "",
     navigation: "quem-somos",
   },
   {
-    title: "DOAÇÕES",
+    title: Pages.DONATIONS_PAGE,
     path: "",
     navigation: "patrocinadores",
   },

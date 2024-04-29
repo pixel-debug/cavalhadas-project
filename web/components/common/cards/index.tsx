@@ -2,11 +2,12 @@ import { DeckCardProps, CardType } from "@/types/types";
 import { Card } from "./card";
 import { useRouter } from "next/router";
 import { usedRouters } from "@/types/routers";
+import { PagesRouters } from "@/types/enums";
 
 export const CardDeck = ({ news }: DeckCardProps) => {
   const router = useRouter();
   const navigation = (path: number) => {
-    router.push(usedRouters("noticias-details", path));
+    router.push(usedRouters(PagesRouters.NEWS_PAGE_DETAILS, path));
   };
   return (
     <div className="flex flex-col items-center">

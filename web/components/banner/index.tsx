@@ -2,6 +2,9 @@ import { BannerProps } from "@/types/types";
 import { Button } from "../common/button";
 import { BannerText } from "./components/text";
 import { CustomImage } from "../common/image";
+import { useRouter } from "next/router";
+import { PagesRouters } from "@/types/enums";
+import { usedRouters } from "@/types/routers";
 
 export const Banner = ({
   title,
@@ -10,6 +13,12 @@ export const Banner = ({
   hasButton,
   isMainPage,
 }: BannerProps) => {
+  const router = useRouter();
+  const goToAboutUsPage = () => {
+    console.log("opjfpo");
+    router.push(usedRouters(PagesRouters.ABOUT_US_PAGE));
+  };
+
   return (
     <div className="h-screen">
       {image && (
@@ -21,7 +30,7 @@ export const Banner = ({
         <BannerText title={title} text={subtitle} isMainPage={isMainPage} />
         {hasButton && (
           <div className="mt-10 mb-2 lg:w-[20%] w-1/3">
-            <Button text={"Saiba mais"} action={() => console.log("clicou")} />
+            <Button text={"Saiba mais"} action={() => goToAboutUsPage()} />
           </div>
         )}
       </div>
