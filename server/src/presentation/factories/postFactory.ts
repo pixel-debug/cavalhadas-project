@@ -8,7 +8,5 @@ export default function createPostFactory() {
   const service = new PostUseCase(repo);
   const controller = new PostController(service);
 
-  return {
-    controller,
-  };
+  return controller;
 }

@@ -1,16 +1,15 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 export class UpdatePostRequest {
-  @IsNumber()
-  @IsNotEmpty()
-  id: number;
-
   @IsString()
+  @IsOptional()
   title: string;
 
   @IsString()
+  @IsOptional()
   image: string;
 
   @IsString()
+  @IsOptional()
   content: string;
 }

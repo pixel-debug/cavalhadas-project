@@ -13,9 +13,6 @@ export class CreatePostRequest {
   @IsNotEmpty()
   content: string;
 
-  @IsBoolean()
-  published: boolean;
-
   constructor(obj: CreatePostRequest) {
     Object.assign(this, obj);
   }
