@@ -1,15 +1,25 @@
 import express, { Request, Response } from "express";
 import postRouter from "./presentation/router/post.router";
-import createPostFactory from "./presentation/factories/postFactory";
 import bodyParser from "body-parser";
+import postFactory from "./presentation/factories/postFactory";
+import { prismaClient } from "./utils/prismaClient";
+import memberFactory from "./presentation/factories/memberFactory";
+import sponsorFactory from "./presentation/factories/sponsorFactory";
+import memberRouter from "./presentation/router/member.router";
+import sponsorRouter from "./presentation/router/sponsor.router";
 
 const app = express();
 
-const postFact = createPostFactory();
-const controller = postFact;
+const postFact = postFactory(prismaClient);
+const memberFact = memberFactory(prismaClient);
+const sponsorFact = sponsorFactory(prismaClient);
+
 app.use(bodyParser.json());
 
-app.use(postRouter(controller));
+app.use(postRouter(postFact));
+app.use(memberRouter(memberFact));
+app.use(sponsorRouter(sponsorFact));
+
 const PORT = 3030;
 
 app.get("/", (req: Request, res: Response) => {
