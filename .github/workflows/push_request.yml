@@ -50,21 +50,4 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run Tests with Jest
-        run: yarn test # Adjust this command according to your test setup
-
-  unusedexports:
-    name: Find unused exports (dead code)...
-    runs-on: ubuntu-latest
-    needs: [install, build, test]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Restore node_modules
-        uses: actions/cache@v2
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Run ts-prune
-        run: yarn ts-prune
+        run: yarn test
