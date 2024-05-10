@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { validateRequest } from "../../utils/middlewere/desiralise";
 import { MemberController } from "../../controllers/memberController";
-import { CreateMemberRequest } from "../../domain/entities/member/dto/request/createMemberRequest";
+import { CreateMemberRequest } from "../../domain/entities/member/dto/request/CreateMemberRequest";
 import { UpdateMemberRequest } from "../../domain/entities/member/dto/request/UpdateMemberRequest.dto";
 
 const router = express.Router();

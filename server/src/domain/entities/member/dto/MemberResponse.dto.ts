@@ -1,4 +1,4 @@
-import { CreateMemberRequest } from "./request/createMemberRequest";
+import { CreateMemberRequest } from "./request/CreateMemberRequest";
 
 export class MemberResponse {
   id: number;

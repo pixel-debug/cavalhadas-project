@@ -33,13 +33,13 @@ export class SponsorRepository
     });
   }
   async update(id: number, entity: UpdateSponsorRequest): Promise<void> {
-    return await this.prisma.sponsor.update({
+    await this.prisma.sponsor.update({
       where: { id },
       data: entity,
     });
   }
   async delete(id: number): Promise<void> {
-    return await this.prisma.sponsor.delete({
+    await this.prisma.sponsor.delete({
       where: { id },
     });
   }

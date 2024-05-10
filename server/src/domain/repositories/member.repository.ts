@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { MemberResponse } from "../entities/member/dto/MemberResponse.dto";
 import { DeleteMemberRequest } from "../entities/member/dto/request/DeleteMemberRequest.dto";
 import { UpdateMemberRequest } from "../entities/member/dto/request/UpdateMemberRequest.dto";
-import { CreateMemberRequest } from "../entities/member/dto/request/createMemberRequest";
+import { CreateMemberRequest } from "../entities/member/dto/request/CreateMemberRequest";
 import { IRepository } from "./interfaces/IRepository";
 import { MemberFilterInput } from "../../utils/filters/members";
 

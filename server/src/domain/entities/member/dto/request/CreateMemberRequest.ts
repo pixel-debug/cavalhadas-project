@@ -24,4 +24,8 @@ export class CreateMemberRequest {
   @IsBoolean()
   @IsNotEmpty()
   isMale: boolean;
+
+  constructor(obj: CreateMemberRequest) {
+    Object.assign(this, obj);
+  }
 }

@@ -2,7 +2,7 @@ import { MemberFilterInput } from "../../utils/filters/members";
 import { MemberResponse } from "../entities/member/dto/MemberResponse.dto";
 import { DeleteMemberRequest } from "../entities/member/dto/request/DeleteMemberRequest.dto";
 import { UpdateMemberRequest } from "../entities/member/dto/request/UpdateMemberRequest.dto";
-import { CreateMemberRequest } from "../entities/member/dto/request/createMemberRequest";
+import { CreateMemberRequest } from "../entities/member/dto/request/CreateMemberRequest";
 import { MemberRepository } from "../repositories/member.repository";
 import { IUseCase } from "./interfaces/IUseCase";
 

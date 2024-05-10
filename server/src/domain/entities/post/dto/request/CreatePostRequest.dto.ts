@@ -1,4 +1,5 @@
 import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
+import { AdminResponse } from "../../../admin/dto/AdminResponse.dto";
 
 export class CreatePostRequest {
   @IsString()
@@ -8,6 +9,10 @@ export class CreatePostRequest {
   @IsString()
   @IsNotEmpty()
   image: string;
+
+  @IsString()
+  @IsNotEmpty()
+  authorId: number;
 
   @IsString()
   @IsNotEmpty()
