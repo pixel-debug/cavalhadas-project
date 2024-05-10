@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "start": "concurrently \"yarn workspace server run start\" \"yarn workspace web run dev\"",
-    "build": "concurrently \"yarn workspace server run build\" \"yarn workspace web run build\""
+    "build": "concurrently \"yarn workspace server run build\" \"yarn workspace web run build\"",
+    "test": "jest"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
