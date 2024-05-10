@@ -7,30 +7,32 @@ import { UpdateAdminRequest } from "../../domain/entities/admin/dto/request/Upda
 const router = express.Router();
 export default function adminRouter(controller: AdminController) {
   router.post(
-    "admin",
+    "/",
     validateRequest(CreateAdminRequest),
     (req: Request, res: Response) => {
       controller.create(req, res);
     }
   );
 
+  router.get("/", (req: Request, res: Response) => {
+    controller.getAll(req, res);
+  });
+
+  router.get("/:id", (req: Request, res: Response) => {
+    controller.get(req, res);
+  });
+
+  router.delete("/:id", (req: Request, res: Response) => {
+    controller.delete(req, res);
+  });
+
   router.put(
-    "admin/:id",
+    "/:id",
     validateRequest(UpdateAdminRequest),
     (req: Request, res: Response) => {
       controller.update(req, res);
     }
   );
 
-  router.get("admin", (req: Request, res: Response) => {
-    controller.getAll(req, res);
-  });
-
-  router.get("admin/:id", (req: Request, res: Response) => {
-    controller.get(req, res);
-  });
-
-  router.delete("admin/:id", (req: Request, res: Response) => {
-    controller.delete(req, res);
-  });
+  return router;
 }

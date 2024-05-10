@@ -19,10 +19,10 @@ const adminFact = adminFactory(prismaClient);
 
 app.use(bodyParser.json());
 
-app.use(postRouter(postFact));
-app.use(memberRouter(memberFact));
-app.use(sponsorRouter(sponsorFact));
-app.use(adminRouter(adminFact));
+app.use("/posts", postRouter(postFact));
+app.use("/admin", adminRouter(adminFact));
+app.use("/members", memberRouter(memberFact));
+app.use("/sponsors", sponsorRouter(sponsorFact));
 
 const PORT = 3030;
 
