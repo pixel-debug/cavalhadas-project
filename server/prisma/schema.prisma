@@ -10,10 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Admin {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  posts Post[]
 }
 
 model Post {
@@ -22,6 +23,8 @@ model Post {
   content   String
   image     String
   published Boolean   @default(false)
+  authorId  Int
+  author    Admin     @relation(fields: [authorId], references: [id])
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
   deleteAt  DateTime?

@@ -7,18 +7,22 @@ import memberFactory from "./presentation/factories/memberFactory";
 import sponsorFactory from "./presentation/factories/sponsorFactory";
 import memberRouter from "./presentation/router/member.router";
 import sponsorRouter from "./presentation/router/sponsor.router";
+import adminFactory from "./presentation/factories/adminFactory";
+import adminRouter from "./presentation/router/admin.router";
 
 const app = express();
 
 const postFact = postFactory(prismaClient);
 const memberFact = memberFactory(prismaClient);
 const sponsorFact = sponsorFactory(prismaClient);
+const adminFact = adminFactory(prismaClient);
 
 app.use(bodyParser.json());
 
 app.use(postRouter(postFact));
 app.use(memberRouter(memberFact));
 app.use(sponsorRouter(sponsorFact));
+app.use(adminRouter(adminFact));
 
 const PORT = 3030;
 
