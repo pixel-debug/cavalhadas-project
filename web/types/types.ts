@@ -1,6 +1,14 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
+
+export type Post = {
+  title: string;
+  content: string;
+  authorId: number;
+  image: File | string;
+};
 
 export type NavigatorsType = {
   title: string;
@@ -93,4 +101,16 @@ export type SliderProps = {
 
 export type SliderItemProps = {
   item: SliderType;
+};
+
+export type InputProps = {
+  label: string;
+  id: string;
+  register: UseFormRegisterReturn;
+  placeholder: string;
+  type?: string;
+};
+
+export type FormProps<T> = {
+  onSubmitForm: (data: T) => void;
 };
