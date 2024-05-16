@@ -2,6 +2,14 @@ import express, { Request, Response, NextFunction } from "express";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 
+declare global {
+  namespace Express {
+    interface Request {
+      dto?: any;
+    }
+  }
+}
+
 export const validateRequest = (dtoClass: any) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {

@@ -5,6 +5,7 @@ export class PostResponse {
   title: string;
   content: string;
   image: string;
+  authorId: number;
   published?: boolean;
   createdAt?: Date;
   updatedAt?: Date;

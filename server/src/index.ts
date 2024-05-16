@@ -9,8 +9,16 @@ import memberRouter from "./presentation/router/member.router";
 import sponsorRouter from "./presentation/router/sponsor.router";
 import adminFactory from "./presentation/factories/adminFactory";
 import adminRouter from "./presentation/router/admin.router";
+import cors from "cors";
+import * as admin from "firebase-admin";
 
 const app = express();
+
+const serviceAccount = require("../src/utils/firebase/serviceAccountKey.ts");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://cavalhadas.appspot.com",
+});
 
 const postFact = postFactory(prismaClient);
 const memberFact = memberFactory(prismaClient);
@@ -18,6 +26,7 @@ const sponsorFact = sponsorFactory(prismaClient);
 const adminFact = adminFactory(prismaClient);
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use("/posts", postRouter(postFact));
 app.use("/admin", adminRouter(adminFact));
