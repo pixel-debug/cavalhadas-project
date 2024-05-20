@@ -1,7 +1,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 
 export type Post = {
   title: string;
@@ -49,7 +49,8 @@ export type BannerProps = {
 
 export type ButtonProps = {
   text: string;
-  action: (() => void) | any;
+  action?: (() => void) | any;
+  type?: "button" | "submit" | "reset";
 };
 
 export type BodyProps = {
@@ -109,8 +110,18 @@ export type InputProps = {
   register: UseFormRegisterReturn;
   placeholder: string;
   type?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type FormProps<T> = {
   onSubmitForm: (data: T) => void;
+  type: string;
+};
+
+export type PostFormProps = {
+  register: UseFormRegister<Post>;
+};
+
+export type ImagePreviewProps = {
+  imagePreview: string;
 };
