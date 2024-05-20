@@ -1,20 +1,34 @@
 import { NewsContentProps, Post } from "@/types/types";
 import { CustomImage } from "../common/image";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
 
 export const NewsContent = ({ selectedNews, openImage }: NewsContentProps) => {
-  const { register, handleSubmit, setValue } = useForm<Post>();
+  const { handleSubmit, setValue } = useForm<Post>({
+    defaultValues: {
+      title: selectedNews.title,
+      content: selectedNews.text,
+    },
+  });
+
   const onSubmit = (data: Post) => {
     console.log(data);
   };
 
   const isAdmin = true;
 
-  useEffect(() => {
-    setValue("title", selectedNews.title);
-    setValue("content", selectedNews.text);
-  }, [selectedNews, setValue]);
+  const handleTitleChange = (event: React.FocusEvent<HTMLParagraphElement>) => {
+    if (isAdmin) {
+      setValue("title", event.target.textContent || "");
+    }
+  };
+
+  const handleContentChange = (
+    event: React.FocusEvent<HTMLParagraphElement>
+  ) => {
+    if (isAdmin) {
+      setValue("content", event.target.textContent || "");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -26,15 +40,17 @@ export const NewsContent = ({ selectedNews, openImage }: NewsContentProps) => {
       </p>
       <p
         className="my-5 font-itim text-lg xl:text-2xl text-neutral-900"
-        {...(isAdmin ? { contentEditable: true } : {})}
-        {...register("title")}
+        contentEditable={isAdmin ? "true" : "false"}
+        onBlur={handleTitleChange}
+        suppressContentEditableWarning={true}
       >
         {selectedNews.title}
       </p>
       <p
         className="font-itim text-xm xl:text-md text-neutral-900"
-        {...(isAdmin ? { contentEditable: true } : {})}
-        {...register("content")}
+        contentEditable={isAdmin ? "true" : "false"}
+        onBlur={handleContentChange}
+        suppressContentEditableWarning={true}
       >
         {selectedNews.text}
       </p>
