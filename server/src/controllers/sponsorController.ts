@@ -9,7 +9,7 @@ export class SponsorController implements IController<SponsorResponse> {
 
   async get(req: Request, res: Response): Promise<SponsorResponse> {
     try {
-      const id = req.params.id;
+      const id = Number(req.params.id);
       const sponsor = await this.sponsorUseCase.get(id);
       res.status(HttpStatus.OK).json(sponsor);
       return sponsor;
@@ -46,7 +46,7 @@ export class SponsorController implements IController<SponsorResponse> {
   }
   async update(req: Request, res: Response): Promise<void> {
     try {
-      const id = req.params.id;
+      const id = Number(req.params.id);
       const body = req.body;
       const sponsor = await this.sponsorUseCase.update(id, body);
       res.status(HttpStatus.OK).json(sponsor);
@@ -59,7 +59,7 @@ export class SponsorController implements IController<SponsorResponse> {
   }
   async delete(req: Request, res: Response): Promise<void> {
     try {
-      const id = req.params.id;
+      const id = Number(req.params.id);
       const sponsor = await this.sponsorUseCase.delete(id);
       res.status(HttpStatus.OK).json(sponsor);
     } catch (error) {
