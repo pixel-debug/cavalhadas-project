@@ -3,11 +3,13 @@ import { validateRequest } from "../../utils/middlewere/desiralise";
 import { SponsorController } from "../../controllers/sponsorController";
 import { CreateSponsorRequest } from "../../domain/entities/sponsor/dto/request/CreateSponsorRequest.dto";
 import { UpdateSponsorRequest } from "../../domain/entities/sponsor/dto/request/UpdateSponsorRequest.dto";
+import { Authentication } from "../../utils/middlewere/authentication";
 
 const router = express.Router();
 export default function sponsorRouter(controller: SponsorController) {
   router.post(
     "/",
+    Authentication,
     validateRequest(CreateSponsorRequest),
     (req: Request, res: Response) => {
       controller.create(req, res);
@@ -22,12 +24,13 @@ export default function sponsorRouter(controller: SponsorController) {
     controller.get(req, res);
   });
 
-  router.delete("/:id", (req: Request, res: Response) => {
+  router.delete("/:id", Authentication, (req: Request, res: Response) => {
     controller.delete(req, res);
   });
 
   router.put(
     "/:id",
+    Authentication,
     validateRequest(UpdateSponsorRequest),
     (req: Request, res: Response) => {
       controller.update(req, res);

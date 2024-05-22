@@ -9,6 +9,10 @@ export class CreateAdminRequest {
   @IsNotEmpty()
   email: string;
 
+  @IsString()
+  @IsNotEmpty()
+  trinco: string;
+
   constructor() {
     (this.name = ""), (this.email = "");
   }

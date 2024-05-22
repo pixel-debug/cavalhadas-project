@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreatePostRequest {
   @IsString()
@@ -9,7 +9,7 @@ export class CreatePostRequest {
   @IsNotEmpty()
   image: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   authorId: number;
 
