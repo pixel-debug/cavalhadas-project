@@ -13,14 +13,14 @@ const AboutUsPage = () => {
     router.push(usedRouters(PagesRouters.ADMIN_MEMBER_PAGE));
   };
 
-  const isAdmin = true;
+  const isAdmin = false;
   return (
     <>
-      <p className="py-10 justify-center flex text-red-900 font-itim text-3xl">
+      <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
         {PageTitles.ABOUT_US}
       </p>
-      <div className="flex flex-col items-center  pt-5">
-        <div className=" w-[80%]">
+      <div className="flex flex-col items-center">
+        <div className="px-10">
           <AboutUsIntroText />
         </div>
       </div>

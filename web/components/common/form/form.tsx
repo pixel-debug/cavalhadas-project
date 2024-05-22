@@ -70,7 +70,7 @@ export const DynamicForm = <T extends FieldValues>({
                 return null;
             }
           })}
-          <p className="text-xs font-itim text-neutral-800 mt-2">
+          <p className="text-xs font-montserrat text-neutral-800 mt-2">
             * Caso for uma amazonas, por favor, não selecione nada
           </p>
         </div>

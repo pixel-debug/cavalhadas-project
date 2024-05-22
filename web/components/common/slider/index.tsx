@@ -1,31 +1,38 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import { sliderSettings } from "@/utils/sliderSettings";
-import { SliderProps, SliderType } from "@/types/types";
-import { Item } from "./item";
+import { SliderProps, Member } from "@/types/types";
+import { SliderList } from "./slider";
 
 export const SliderComponent = ({ subjects }: SliderProps) => {
-  const settings = {
-    ...sliderSettings,
-  };
+  const groupedSubjects = [
+    {
+      title: "Administradores",
+      subjects: subjects.filter((subject: Member) => subject.isAdm),
+    },
+    {
+      title: "Cavalhada Masculina",
+      subjects: subjects.filter(
+        (subject: Member) => subject.isMale && !subject.isAdm
+      ),
+    },
+    {
+      title: "Cavalhada Feminina",
+      subjects: subjects.filter(
+        (subject: Member) => !subject.isAdm && !subject.isMale
+      ),
+    },
+  ];
 
   return (
-    <div className="flex flex-col justify-center pt-10 ">
-      <div className="w-[100%] pb-10">
-        <Slider {...settings} arrows={false}>
-          {subjects.map((subject: SliderType, index: number) => (
-            <Item key={"people -" + index} item={subject} />
-          ))}
-        </Slider>
-      </div>
-      <div className="w-[100%] py-10">
-        <Slider {...settings} arrows={false}>
-          {subjects.map((subject: SliderType, index: number) => (
-            <Item key={"people -" + index} item={subject} />
-          ))}
-        </Slider>
-      </div>
+    <div className="flex flex-col justify-center pt-10">
+      {groupedSubjects.map((group, index) => (
+        <div key={index} className="mb-8">
+          <h2 className="text-start text-xl font-bold font-nutito">
+            {group.title}
+          </h2>
+          <SliderList subjects={group.subjects} />
+        </div>
+      ))}
     </div>
   );
 };

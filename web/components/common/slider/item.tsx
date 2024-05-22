@@ -8,9 +8,9 @@ export const Item = ({ item }: SliderItemProps) => {
         <CustomImage src={item.image} alt={"people"} rounded />
       </div>
       <div className="flex flex-col mt-3 items-center">
-        <p className="font-itim text-xm text-neutral-800">Nome Sobrenome</p>
-        <p className="font-itim text-xs text-neutral-500">
-          Cargo - desde quando
+        <p className="font-montserrat text-xm text-neutral-800">{item.name}</p>
+        <p className="font-montserrat text-xs text-neutral-500">
+          {item.role} - {item.memberSince}
         </p>
       </div>
     </div>

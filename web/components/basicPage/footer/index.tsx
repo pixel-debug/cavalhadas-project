@@ -1,5 +1,5 @@
-import { FooterComponent } from "./style"
+import { FooterComponent } from "./style";
 
 export const Footer = () => {
-  return <FooterComponent />
-}
+  return <FooterComponent />;
+};

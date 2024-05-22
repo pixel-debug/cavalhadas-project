@@ -11,11 +11,11 @@ const SponsorsPage = () => {
     router.push(usedRouters(PagesRouters.ADMIN_SPONSOR_PAGE));
   };
 
-  const isAdmin = true;
+  const isAdmin = false;
 
   return (
     <>
-      <p className="py-10 justify-center flex text-blue-900 font-itim text-3xl">
+      <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
         {PageTitles.SPONSORS}
       </p>
       <Sponsors />
@@ -23,7 +23,7 @@ const SponsorsPage = () => {
       {isAdmin ? (
         <div className="flex justify-center mt-4">
           <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Adicionar membro"} action={navigation} />
+            <Button text={"Gerenciar patrocinador"} action={navigation} />
           </div>
         </div>
       ) : null}

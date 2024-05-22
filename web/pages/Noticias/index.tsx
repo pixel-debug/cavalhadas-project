@@ -12,7 +12,7 @@ const NewsPage = () => {
   };
 
   const news = newsArray;
-  const isAdmin = true;
+  const isAdmin = false;
   return (
     <>
       <div className="flex p-10">

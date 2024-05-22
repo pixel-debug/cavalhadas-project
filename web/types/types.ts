@@ -31,7 +31,6 @@ export type Post = {
 };
 
 export type MemberType = {
-  id: number;
   name: string;
   role: string;
   image: File | string;
@@ -41,10 +40,11 @@ export type MemberType = {
 };
 
 export type Member = {
+  id: number;
   name: string;
   role: string;
-  image: File | string;
-  memberSince: Date;
+  image: string;
+  memberSince: string;
   isAdm: boolean;
   isMale: boolean;
 };
@@ -136,11 +136,11 @@ export type SliderType = {
 };
 
 export type SliderProps = {
-  subjects: SliderType[];
+  subjects: Member[];
 };
 
 export type SliderItemProps = {
-  item: SliderType;
+  item: Member;
 };
 
 export type InputProps = {
