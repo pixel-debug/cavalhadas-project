@@ -18,4 +18,5 @@ export enum PagesRouters {
   ADMIN_NEWS_PAGE = "admin-news",
   ADMIN_SPONSOR_PAGE = "admin-sponsors",
   ADMIN_MEMBER_PAGE = "admin-members",
+  LOGIN = "login",
 }

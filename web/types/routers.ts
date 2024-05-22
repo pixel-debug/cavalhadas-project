@@ -16,6 +16,8 @@ export const usedRouters = (path?: string, target?: number): string => {
       return "/Sponsors/Admin/";
     case PagesRouters.ADMIN_MEMBER_PAGE:
       return "/AboutUs/Admin/";
+    case PagesRouters.LOGIN:
+      return "/Login";
     default:
       return "/";
   }

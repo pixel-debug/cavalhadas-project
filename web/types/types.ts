@@ -49,6 +49,18 @@ export type Member = {
   isMale: boolean;
 };
 
+export type Admin = {
+  id: number;
+  name: string;
+  email: string;
+  trinco: string;
+};
+
+export type LoginResponse = {
+  admin: Admin;
+  token: string;
+};
+
 export type NavigatorsType = {
   title: string;
   path: string;

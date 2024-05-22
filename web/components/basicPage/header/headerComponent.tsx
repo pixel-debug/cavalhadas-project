@@ -6,7 +6,7 @@ export const NavigationComponent = ({ navigators, navigate }: HeaderProps) => {
       {navigators.map((navigator: NavigatorsType, index: number) => (
         <p
           key={index}
-          className="text-sm text-neutral-100 font-montserrat"
+          className="text-sm text-neutral-100 font-bold font-montserrat"
           onClick={() => navigate(navigator.navigation)}
         >
           {navigator.title}
