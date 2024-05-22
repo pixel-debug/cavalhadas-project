@@ -8,7 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        itim: ["Itim", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        nunito: ["Nunito", "sans-serif"],
       },
       fontSize: {
         xs: "10px",

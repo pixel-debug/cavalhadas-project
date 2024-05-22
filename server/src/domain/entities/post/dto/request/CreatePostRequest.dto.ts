@@ -1,5 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
-import { AdminResponse } from "../../../admin/dto/AdminResponse.dto";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreatePostRequest {
   @IsString()
@@ -10,7 +9,7 @@ export class CreatePostRequest {
   @IsNotEmpty()
   image: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   authorId: number;
 
@@ -18,7 +17,10 @@ export class CreatePostRequest {
   @IsNotEmpty()
   content: string;
 
-  constructor(obj: CreatePostRequest) {
-    Object.assign(this, obj);
+  constructor() {
+    this.title = "";
+    this.image = "";
+    this.authorId = 0;
+    this.content = "";
   }
 }

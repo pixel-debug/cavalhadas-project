@@ -3,15 +3,22 @@ import "../assets/globals.css";
 import { Body } from "@/components/basicPage/body";
 import { Footer } from "@/components/basicPage/footer";
 import { Header } from "@/components/basicPage/header";
+import { useRouter } from "next/router";
+import { AdminProvider } from "@/context/useAdminContext";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const isLoginPage = router.pathname === "/Login";
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <Body>
-        <Component {...pageProps} />;
-      </Body>
-      <Footer />
-    </div>
+    <AdminProvider>
+      <div className="flex flex-col min-h-screen">
+        {!isLoginPage && <Header />}
+        <Body>
+          <Component {...pageProps} />
+        </Body>
+        {!isLoginPage && <Footer />}
+      </div>
+    </AdminProvider>
   );
 }

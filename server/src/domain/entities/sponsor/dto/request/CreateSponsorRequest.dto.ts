@@ -13,7 +13,7 @@ export class CreateSponsorRequest {
   @IsNotEmpty()
   sponsorship: number;
 
-  constructor(obj: CreateSponsorRequest) {
-    Object.assign(this, obj);
+  constructor() {
+    (this.name = ""), (this.image = ""), (this.sponsorship = 0);
   }
 }

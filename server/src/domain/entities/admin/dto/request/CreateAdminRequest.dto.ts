@@ -9,7 +9,11 @@ export class CreateAdminRequest {
   @IsNotEmpty()
   email: string;
 
-  constructor(obj: CreateAdminRequest) {
-    Object.assign(this, obj);
+  @IsString()
+  @IsNotEmpty()
+  trinco: string;
+
+  constructor() {
+    (this.name = ""), (this.email = "");
   }
 }

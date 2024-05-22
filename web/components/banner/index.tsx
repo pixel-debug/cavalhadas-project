@@ -15,7 +15,6 @@ export const Banner = ({
 }: BannerProps) => {
   const router = useRouter();
   const goToAboutUsPage = () => {
-    console.log("opjfpo");
     router.push(usedRouters(PagesRouters.ABOUT_US_PAGE));
   };
 

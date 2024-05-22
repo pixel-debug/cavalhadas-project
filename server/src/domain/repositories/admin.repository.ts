@@ -44,4 +44,9 @@ export class AdminRepository
       where: { id },
     });
   }
+  async findByEmail(email: string): Promise<AdminResponse> {
+    return await this.prisma.admin.findUnique({
+      where: { email },
+    });
+  }
 }

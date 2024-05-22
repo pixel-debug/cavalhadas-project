@@ -23,7 +23,7 @@ export class MemberController implements IController<MemberResponse> {
   async getAll(req: Request, res: Response): Promise<MemberResponse[]> {
     try {
       const members = await this.memberUseCase.getAll();
-      res.status(HttpMessages.OK).json(members);
+      res.status(HttpStatus.OK).json(members);
       return members;
     } catch (error) {
       console.error(error);
@@ -36,7 +36,7 @@ export class MemberController implements IController<MemberResponse> {
     try {
       const memberData = req.body;
       const member = await this.memberUseCase.create(memberData);
-      res.status(HttpMessages.OK).json(member);
+      res.status(HttpStatus.OK).json(member);
     } catch (error) {
       console.error(error);
       res
@@ -46,10 +46,10 @@ export class MemberController implements IController<MemberResponse> {
   }
   async update(req: Request, res: Response): Promise<void> {
     try {
-      const id = req.params.id;
+      const id = Number(req.params.id);
       const body = req.body;
       const updatedMember = await this.memberUseCase.update(id, body);
-      res.status(HttpMessages.OK).json(updatedMember);
+      res.status(HttpStatus.OK).json(updatedMember);
     } catch (error) {
       console.error(error);
       res
@@ -59,9 +59,9 @@ export class MemberController implements IController<MemberResponse> {
   }
   async delete(req: Request, res: Response): Promise<void> {
     try {
-      const id = req.params.id;
+      const id = Number(req.params.id);
       const deletedMember = await this.memberUseCase.delete(id);
-      res.status(HttpMessages.OK).json(deletedMember);
+      res.status(HttpStatus.OK).json(deletedMember);
     } catch (error) {
       console.error(error);
       res

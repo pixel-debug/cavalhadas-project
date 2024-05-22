@@ -18,6 +18,10 @@ export default function adminRouter(controller: AdminController) {
     controller.getAll(req, res);
   });
 
+  router.post("/login", (req: Request, res: Response) => {
+    controller.login(req, res);
+  });
+
   router.get("/:id", (req: Request, res: Response) => {
     controller.get(req, res);
   });
