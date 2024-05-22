@@ -2,7 +2,11 @@ import { NewsContentProps, Post } from "@/types/types";
 import { CustomImage } from "../common/image";
 import { useForm } from "react-hook-form";
 
-export const NewsContent = ({ selectedNews, openImage }: NewsContentProps) => {
+export const NewsContent = ({
+  selectedNews,
+  openImage,
+  isAdmin,
+}: NewsContentProps) => {
   const { handleSubmit, setValue } = useForm<Post>({
     defaultValues: {
       title: selectedNews.title,
@@ -13,8 +17,6 @@ export const NewsContent = ({ selectedNews, openImage }: NewsContentProps) => {
   const onSubmit = (data: Post) => {
     console.log(data);
   };
-
-  const isAdmin = false;
 
   const handleTitleChange = (event: React.FocusEvent<HTMLParagraphElement>) => {
     if (isAdmin) {

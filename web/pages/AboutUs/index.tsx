@@ -2,10 +2,12 @@ import { AboutUsIntroText } from "@/components/aboutUs/intro";
 import { Box } from "@/components/common/box";
 import { Button } from "@/components/common/button";
 import { SliderComponent } from "@/components/common/slider";
+import { AdminContext } from "@/context/useAdminContext";
 import { PageTitles, PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
 import { sliderMockedData } from "@/utils/mockedData/slider";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
 const AboutUsPage = () => {
   const router = useRouter();
@@ -13,7 +15,7 @@ const AboutUsPage = () => {
     router.push(usedRouters(PagesRouters.ADMIN_MEMBER_PAGE));
   };
 
-  const isAdmin = false;
+  const { admin } = useContext(AdminContext);
   return (
     <>
       <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
@@ -27,7 +29,7 @@ const AboutUsPage = () => {
       <Box title={"Quem somos"}>
         <SliderComponent subjects={sliderMockedData} />
       </Box>
-      {isAdmin ? (
+      {admin ? (
         <div className="flex justify-center mt-4">
           <div className="xl:w-[40%] w-[30%]">
             <Button text={"Adicionar membro"} action={navigation} />

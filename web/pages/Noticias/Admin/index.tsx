@@ -4,8 +4,12 @@ import { createPost } from "@/external/api/postApi";
 import { convertFileToString } from "@/utils/convertFileToString";
 import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
+import { useContext } from "react";
+import { AdminContext } from "@/context/useAdminContext";
 
 const WritePost = () => {
+  const { admin } = useContext(AdminContext);
+
   const handleSubmit = async (data: Post) => {
     if (data.image instanceof FileList) {
       const file = data.image[0];
@@ -14,7 +18,7 @@ const WritePost = () => {
     }
     const post = await createPost({
       ...data,
-      authorId: 1,
+      authorId: admin ? admin.id : 0,
     });
     if (post) console.log("take back to noticias page");
     else console.log("no posts");

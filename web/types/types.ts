@@ -138,6 +138,7 @@ export type ModalProps = {
 export type NewsContentProps = {
   selectedNews: CardType;
   openImage: (openImage: boolean) => void;
+  isAdmin: boolean;
 };
 
 export type SliderType = {
