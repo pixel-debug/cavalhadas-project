@@ -43,7 +43,7 @@ export type Member = {
   id: number;
   name: string;
   role: string;
-  image: string;
+  image: File | string;
   memberSince: string;
   isAdm: boolean;
   isMale: boolean;
