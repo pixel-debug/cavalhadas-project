@@ -10,15 +10,10 @@ import sponsorRouter from "./presentation/router/sponsor.router";
 import adminFactory from "./presentation/factories/adminFactory";
 import adminRouter from "./presentation/router/admin.router";
 import cors from "cors";
-import * as admin from "firebase-admin";
+import admin from "./utils/firebase/serviceAccountKey";
 
 const app = express();
-
-const serviceAccount = require("../src/utils/firebase/serviceAccountKey.ts");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: "gs://cavalhadas.appspot.com",
-});
+admin.firestore();
 
 const postFact = postFactory(prismaClient);
 const memberFact = memberFactory(prismaClient);
