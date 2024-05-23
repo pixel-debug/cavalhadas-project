@@ -21,7 +21,7 @@ describe("Admin useCase tests", () => {
     test("Should return a list of admins", async () => {
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.getAll.mockResolvedValue(adminData.adminData);
       await adminController.getAll(
@@ -36,7 +36,7 @@ describe("Admin useCase tests", () => {
     test("Should handle internal server error during getAll", async () => {
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       // Mock adminUseCase behavior to throw error
       adminUseCaseMock.getAll.mockRejectedValue(
@@ -61,7 +61,7 @@ describe("Admin useCase tests", () => {
       );
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.get.mockResolvedValue(admin);
       await adminController.get(
@@ -77,7 +77,7 @@ describe("Admin useCase tests", () => {
       const adminId = "1";
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.get.mockRejectedValue(
         new Error(HttpMessages.INTERNAL_SERVER_ERROR)
@@ -101,7 +101,7 @@ describe("Admin useCase tests", () => {
 
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.create.mockResolvedValue(createdAdmin);
 
@@ -120,7 +120,7 @@ describe("Admin useCase tests", () => {
 
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.create.mockRejectedValue(
         new Error(HttpMessages.INTERNAL_SERVER_ERROR)
@@ -149,11 +149,11 @@ describe("Admin useCase tests", () => {
         body: {
           ...adminData.admin1,
         },
-      };
+      } as unknown as Request;
 
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.update.mockResolvedValue();
       await adminController.update(mockReq, mockRes);
@@ -173,11 +173,11 @@ describe("Admin useCase tests", () => {
           id: adminId,
         },
         body: adminData.admin1,
-      };
+      } as unknown as Request;
 
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.update.mockRejectedValue(
         new Error(HttpMessages.INTERNAL_SERVER_ERROR)
@@ -203,11 +203,11 @@ describe("Admin useCase tests", () => {
         params: {
           id: adminId,
         },
-      };
+      } as unknown as Request;
 
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.delete.mockResolvedValue();
       await adminController.delete(mockReq, mockRes);
@@ -223,11 +223,11 @@ describe("Admin useCase tests", () => {
         params: {
           id: adminId,
         },
-      };
+      } as unknown as Request;
 
       const mockJson = jest.fn();
       const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
-      const mockRes = { status: mockStatus };
+      const mockRes = { status: mockStatus } as unknown as Response;
 
       adminUseCaseMock.delete.mockRejectedValue(
         new Error(HttpMessages.INTERNAL_SERVER_ERROR)

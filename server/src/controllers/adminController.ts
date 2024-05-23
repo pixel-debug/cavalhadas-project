@@ -82,7 +82,7 @@ export class AdminController implements IController<AdminResponse> {
     }
   }
 
-  async login(req: Request, res: Response): Promise<void> {
+  async login(req: Request, res: Response): Promise<Response> {
     try {
       const { email, trinco } = req.body;
       const admin = await this.adminUseCase.findByEmail(email);
