@@ -25,7 +25,12 @@ export class CreateMemberRequest {
   @IsNotEmpty()
   isMale: boolean;
 
-  constructor(obj: CreateMemberRequest) {
-    Object.assign(this, obj);
+  constructor() {
+    this.name = "";
+    this.role = "";
+    this.image = "";
+    this.memberSince = new Date();
+    this.isAdm = false;
+    this.isMale = true;
   }
 }

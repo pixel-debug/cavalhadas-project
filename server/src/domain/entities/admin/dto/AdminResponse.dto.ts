@@ -4,6 +4,7 @@ export class AdminResponse {
   id: number;
   name: string;
   email: string;
+  trinco: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;

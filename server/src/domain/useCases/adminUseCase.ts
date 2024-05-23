@@ -31,4 +31,7 @@ export class AdminUseCase
   async delete(id: number): Promise<void> {
     return await this.adminRepository.delete(id);
   }
+  async findByEmail(email: string): Promise<AdminResponse> {
+    return await this.adminRepository.findByEmail(email);
+  }
 }

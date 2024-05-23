@@ -3,11 +3,13 @@ import { validateRequest } from "../../utils/middlewere/desiralise";
 import { MemberController } from "../../controllers/memberController";
 import { CreateMemberRequest } from "../../domain/entities/member/dto/request/CreateMemberRequest";
 import { UpdateMemberRequest } from "../../domain/entities/member/dto/request/UpdateMemberRequest.dto";
+import { Authentication } from "../../utils/middlewere/authentication";
 
 const router = express.Router();
 export default function memberRouter(controller: MemberController) {
   router.post(
     "/",
+    Authentication,
     validateRequest(CreateMemberRequest),
     (req: Request, res: Response) => {
       controller.create(req, res);
@@ -22,12 +24,13 @@ export default function memberRouter(controller: MemberController) {
     controller.get(req, res);
   });
 
-  router.delete("/:id", (req: Request, res: Response) => {
+  router.delete("/:id", Authentication, (req: Request, res: Response) => {
     controller.delete(req, res);
   });
 
   router.put(
     "/:id",
+    Authentication,
     validateRequest(UpdateMemberRequest),
     (req: Request, res: Response) => {
       controller.update(req, res);

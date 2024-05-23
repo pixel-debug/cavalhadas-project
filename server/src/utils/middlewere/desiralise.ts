@@ -1,32 +1,28 @@
-import express, { Request, Response, NextFunction } from "express";
-import { validate } from "class-validator";
+import { Request, Response, NextFunction } from "express";
 import { plainToClass } from "class-transformer";
+import { validate } from "class-validator";
 
-declare global {
-  namespace Express {
-    interface Request {
-      dto?: any;
-    }
-  }
-}
-
-export const validateRequest = (dtoClass: any) => {
+export function validateRequest<T extends object>(
+  dtoClass: new () => T
+): (req: Request, res: Response, next: NextFunction) => void {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const dtoInstance = plainToClass(dtoClass, req.body);
-      const errors = await validate(dtoInstance);
+      const dto = plainToClass(dtoClass, req.body);
+      const errors = await validate(dto);
+
       if (errors.length > 0) {
-        const validationErrors = errors.map((error) =>
-          Object.values(error.constraints)
-        );
+        const validationErrors = errors.map((error) => ({
+          field: error.property,
+          message: Object.values(error.constraints || {}).join(", "),
+        }));
         return res.status(400).json({ errors: validationErrors });
       }
 
-      req.dto = dtoInstance;
+      req.body = dto;
       next();
-    } catch (err) {
-      console.error("Error validating request:", err);
-      res.status(500).json({ error: "Internal server error" });
+    } catch (error) {
+      console.error("Error in validation middleware:", error);
+      res.status(500).json({ message: "Internal server error" });
     }
   };
-};
+}

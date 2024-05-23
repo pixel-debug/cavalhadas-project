@@ -8,14 +8,14 @@ export const Card = ({ news, navigation }: CardProps) => {
         <CustomImage src={news.image} alt="" objectFit="cover" />
       </div>
 
-      <p className="text-xs text-neutral-600 font-itim">{news.date}</p>
-      <p className="text-lg text-neutral-900 font-itim leading-tight line-clamp-3">
+      <p className="text-xs text-neutral-600 font-montserrat">{news.date}</p>
+      <p className="text-lg text-neutral-900 font-montserrat leading-tight line-clamp-3">
         {news.title}
       </p>
-      <p className="text-xs text-neutral-600 font-itim line-clamp-3">
+      <p className="text-xs text-neutral-600 font-montserrat line-clamp-3">
         {news.text}
       </p>
-      <p className="text-xs text-blue-200 font-itim flex justify-end">
+      <p className="text-xs text-blue-200 font-montserrat flex justify-end">
         Veja mais
       </p>
     </div>

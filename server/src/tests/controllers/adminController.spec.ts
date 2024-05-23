@@ -24,7 +24,10 @@ describe("Admin useCase tests", () => {
       const mockRes = { status: mockStatus };
 
       adminUseCaseMock.getAll.mockResolvedValue(adminData.adminData);
-      await adminController.getAll({} as Request, mockRes as Response);
+      await adminController.getAll(
+        {} as Request,
+        mockRes as unknown as Response
+      );
 
       expect(mockStatus).toHaveBeenCalledWith(HttpStatus.OK);
       expect(mockJson).toHaveBeenCalledWith(adminData.adminData);
@@ -40,7 +43,10 @@ describe("Admin useCase tests", () => {
         new Error(HttpMessages.INTERNAL_SERVER_ERROR)
       );
 
-      await adminController.getAll({} as Request, mockRes as Response);
+      await adminController.getAll(
+        {} as Request,
+        mockRes as unknown as Response
+      );
 
       expect(mockStatus).toHaveBeenCalledWith(HttpStatus.INTERNAL_SERVER_ERROR);
       expect(mockJson).toHaveBeenCalledWith({
@@ -59,8 +65,8 @@ describe("Admin useCase tests", () => {
 
       adminUseCaseMock.get.mockResolvedValue(admin);
       await adminController.get(
-        { params: { id: adminId } } as Request,
-        mockRes as Response
+        { params: { id: adminId } } as unknown as Request,
+        mockRes as unknown as Response
       );
 
       expect(mockStatus).toHaveBeenCalledWith(HttpStatus.OK);
@@ -78,8 +84,8 @@ describe("Admin useCase tests", () => {
       );
 
       await adminController.get(
-        { params: { id: adminId } } as Request,
-        mockRes as Response
+        { params: { id: adminId } } as unknown as Request,
+        mockRes as unknown as Response
       );
 
       expect(mockStatus).toHaveBeenCalledWith(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -103,7 +109,7 @@ describe("Admin useCase tests", () => {
         body: createdAdmin,
       } as Request;
 
-      await adminController.create(mockReq, mockRes as Response);
+      await adminController.create(mockReq, mockRes as unknown as Response);
 
       expect(mockStatus).toHaveBeenCalledWith(HttpStatus.CREATED);
       expect(mockJson).toHaveBeenCalledWith(createdAdmin);
@@ -124,7 +130,7 @@ describe("Admin useCase tests", () => {
         body: createdAdmin,
       } as Request;
 
-      await adminController.create(mockReq, mockRes as Response);
+      await adminController.create(mockReq, mockRes as unknown as Response);
 
       expect(mockStatus).toHaveBeenCalledWith(HttpStatus.INTERNAL_SERVER_ERROR);
       expect(mockJson).toHaveBeenCalledWith({

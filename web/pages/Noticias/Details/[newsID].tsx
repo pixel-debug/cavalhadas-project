@@ -5,13 +5,16 @@ import { NewsContent } from "@/components/newsPage";
 import { CardType } from "@/types/types";
 import { newsArray } from "@/utils/mockedData/new";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { isAbsolute } from "path";
+import { AdminContext } from "@/context/useAdminContext";
 
 const NewsDetails = () => {
   const router = useRouter();
   const { newsID } = router.query;
   const [selected, setSelected] = useState<CardType>();
   const [modal, setModal] = useState(false);
+  const { admin } = useContext(AdminContext);
 
   const findNews = useCallback(() => {
     const found = newsArray.find(
@@ -28,7 +31,11 @@ const NewsDetails = () => {
     selected && (
       <div className="overflow-auto pt-10">
         <Box title="">
-          <NewsContent selectedNews={selected} openImage={setModal} />
+          <NewsContent
+            selectedNews={selected}
+            openImage={setModal}
+            isAdmin={admin ? true : false}
+          />
         </Box>
         {modal && (
           <Modal closeModal={() => setModal(false)}>

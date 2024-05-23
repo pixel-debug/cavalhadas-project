@@ -12,6 +12,7 @@ import adminRouter from "./presentation/router/admin.router";
 import cors from "cors";
 import admin from "./utils/firebase/serviceAccountKey";
 
+
 const app = express();
 admin.firestore();
 

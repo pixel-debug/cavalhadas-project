@@ -10,6 +10,14 @@ export const usedRouters = (path?: string, target?: number): string => {
       return "/AboutUs";
     case PagesRouters.SPONSORS_PAGE:
       return "/Sponsors";
+    case PagesRouters.ADMIN_NEWS_PAGE:
+      return "/Noticias/Admin/";
+    case PagesRouters.ADMIN_SPONSOR_PAGE:
+      return "/Sponsors/Admin/";
+    case PagesRouters.ADMIN_MEMBER_PAGE:
+      return "/AboutUs/Admin/";
+    case PagesRouters.LOGIN:
+      return "/Login";
     default:
       return "/";
   }
