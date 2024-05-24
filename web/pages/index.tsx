@@ -7,9 +7,10 @@ import { CardDeck } from "@/components/common/cards";
 import { Box } from "@/components/common/box";
 import { BannerMockedTitle, BannerMockedText } from "@/utils/texts";
 import { PagesRouters } from "@/types/enums";
+import { getPosts } from "@/external/api/postApi";
+import { useQuery } from "react-query";
 
 export default function Home() {
-  const news = newsArray.slice(0, 3);
   const router = useRouter();
   const navigation = () => {
     router.push(usedRouters(PagesRouters.NEWS_PAGE));
@@ -19,6 +20,14 @@ export default function Home() {
   const text = BannerMockedText;
   const image =
     "https://www.ipatrimonio.org/wp-content/uploads/2018/11/ipatrimonio_Ouro-Preto-Cavalhada-_Foto-Ane-Souz-Fonte-Prefeitura-Municipal.jpg";
+
+  const { data } = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
+
+  if (!data) return;
+  const news = data.slice(0, 3);
 
   return (
     <>

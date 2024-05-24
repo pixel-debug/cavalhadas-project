@@ -1,6 +1,7 @@
 import { NewsContentProps, Post } from "@/types/types";
 import { CustomImage } from "../common/image";
 import { useForm } from "react-hook-form";
+import { formatDateToString, imageSrc } from "@/utils/formatters";
 
 export const NewsContent = ({
   selectedNews,
@@ -10,7 +11,7 @@ export const NewsContent = ({
   const { handleSubmit, setValue } = useForm<Post>({
     defaultValues: {
       title: selectedNews.title,
-      content: selectedNews.text,
+      content: selectedNews.content,
     },
   });
 
@@ -35,10 +36,14 @@ export const NewsContent = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="h-[60vh] w-full" onClick={() => openImage(true)}>
-        <CustomImage src={selectedNews?.image} alt="" objectFit="cover" />
+        <CustomImage
+          src={imageSrc(selectedNews?.image)}
+          alt=""
+          objectFit="cover"
+        />
       </div>
       <p className="font-montserrat text-xs xl:text-xm text-neutral-600">
-        {selectedNews.date}
+        {formatDateToString(selectedNews.createdAt)}
       </p>
       <p
         className="my-5 font-montserrat text-lg xl:text-2xl text-neutral-900"
@@ -54,7 +59,7 @@ export const NewsContent = ({
         onBlur={handleContentChange}
         suppressContentEditableWarning={true}
       >
-        {selectedNews.text}
+        {selectedNews.content}
       </p>
       {isAdmin && (
         <button

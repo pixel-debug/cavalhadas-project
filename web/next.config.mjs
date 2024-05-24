@@ -10,6 +10,9 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    LOCAL_URL: process.env.BASE_URL,
+  }
 };
 
 export default nextConfig;
