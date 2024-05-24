@@ -3,19 +3,24 @@ import { Box } from "@/components/common/box";
 import { Button } from "@/components/common/button";
 import { SliderComponent } from "@/components/common/slider";
 import { AdminContext } from "@/context/useAdminContext";
+import { getMembers } from "@/external/api/memberApi";
 import { PageTitles, PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
-import { sliderMockedData } from "@/utils/mockedData/slider";
 import { useRouter } from "next/router";
 import { useContext } from "react";
+import { useQuery } from "react-query";
 
 const AboutUsPage = () => {
   const router = useRouter();
   const navigation = () => {
     router.push(usedRouters(PagesRouters.ADMIN_MEMBER_PAGE));
   };
-
   const { admin } = useContext(AdminContext);
+  const { data } = useQuery({
+    queryKey: ["member"],
+    queryFn: getMembers,
+  });
+
   return (
     <>
       <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
@@ -27,7 +32,7 @@ const AboutUsPage = () => {
         </div>
       </div>
       <Box title={"Quem somos"}>
-        <SliderComponent subjects={sliderMockedData} />
+        {data ? <SliderComponent subjects={data} /> : null}
       </Box>
       {admin ? (
         <div className="flex justify-center mt-4">

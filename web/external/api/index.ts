@@ -18,7 +18,7 @@ export const api = async <T>(
   try {
     const response = await axios({
       method,
-      url: `${"http://localhost:3030"}${url}`,
+      url: `${process.env.LOCAL_URL}${url}`,
       headers,
       data: body,
     });

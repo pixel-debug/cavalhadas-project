@@ -1,9 +1,18 @@
 import { Post } from "@/types/types";
 import { api } from ".";
 
-export const getPost = async () => {
+export const getPosts = async (): Promise<Post[]> => {
   try {
-    const postData = await api<Post>("/posts");
+    const postData = await api<Post[]>("/posts");
+    return postData;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getPost = async (id: number): Promise<Post> => {
+  try {
+    const postData = await api<Post>(`/posts/${id}`);
     return postData;
   } catch (error) {
     throw error;
@@ -13,6 +22,24 @@ export const getPost = async () => {
 export const createPost = async (data: Post) => {
   try {
     const responseData = await api<Post>("/posts", "POST", data);
+    return responseData;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updatePost = async (id: number, data: Post) => {
+  try {
+    const responseData = await api<Post>(`/posts/${id}`, "PUT", data);
+    return responseData;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deletePost = async (id: number) => {
+  try {
+    const responseData = await api<Post>(`/posts/${id}`, "DELETE");
     return responseData;
   } catch (error) {
     throw error;

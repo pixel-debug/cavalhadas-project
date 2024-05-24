@@ -28,6 +28,7 @@ export type Post = {
   content: string;
   authorId: number;
   image: File | string;
+  createdAt: Date;
 };
 
 export type MemberType = {
@@ -122,12 +123,12 @@ export type CardType = {
 };
 
 export type CardProps = {
-  news: CardType;
+  news: Post;
   navigation: (path: number) => void;
 };
 
 export type DeckCardProps = {
-  news: CardType[];
+  news: Post[];
 };
 
 export type ModalProps = {
@@ -136,7 +137,7 @@ export type ModalProps = {
 };
 
 export type NewsContentProps = {
-  selectedNews: CardType;
+  selectedNews: Post;
   openImage: (openImage: boolean) => void;
   isAdmin: boolean;
 };
@@ -196,4 +197,8 @@ export type FormField = {
 export type DynamicFormProps<T extends FieldValues> = {
   fields: FormField[];
   onSubmit: (data: T) => void;
+};
+
+export type SponsorListProps = {
+  sponsors: Sponsor[];
 };

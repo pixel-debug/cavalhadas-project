@@ -1,22 +1,39 @@
 import { Box } from "@/components/common/box";
 import { FormField, Member } from "@/types/types";
-import { convertFileToString } from "@/utils/convertFileToString";
 import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
+import { AdminContext } from "@/context/useAdminContext";
+import { convertFileToString } from "@/utils/formatters";
+import { useContext } from "react";
+import { useMutation } from "react-query";
+import { createMember } from "@/external/api/memberApi";
 
 const AddMember = () => {
+  const { admin } = useContext(AdminContext);
+
+  const { mutate } = useMutation(createMember, {
+    onSuccess: (data) => {
+      console.log(data);
+      const message = "success";
+      alert(message);
+    },
+    onError: () => {
+      alert("there was an error");
+    },
+  });
+
   const handleSubmit = async (data: Member) => {
     if (data.image instanceof FileList) {
       const file = data.image[0];
       const imageData = await convertFileToString(file);
       data.image = imageData;
     }
-    // const post = await createPost({
-    //   ...data,
-    //   authorId: 1,
-    // });
-    // if (post) console.log("take back to noticias page");
-    // else console.log("no posts");
+    const member = {
+      ...data,
+      authorId: admin ? admin.id : 0,
+    };
+
+    mutate(member);
   };
 
   const memberFormFields: FormField[] = [
