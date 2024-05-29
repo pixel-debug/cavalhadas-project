@@ -16,10 +16,7 @@ const AboutUsPage = () => {
     router.push(usedRouters(PagesRouters.ADMIN_MEMBER_PAGE));
   };
   const { admin } = useContext(AdminContext);
-  const { data } = useQuery({
-    queryKey: ["member"],
-    queryFn: getMembers,
-  });
+  const { data } = useQuery(["member"], getMembers);
 
   return (
     <>
@@ -32,15 +29,16 @@ const AboutUsPage = () => {
         </div>
       </div>
       <Box title={"Quem somos"}>
-        {data ? <SliderComponent subjects={data} /> : null}
-      </Box>
-      {admin ? (
-        <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Adicionar membro"} action={navigation} />
+        {data && data.length > 0 ? (
+          <SliderComponent subjects={data} />
+        ) : admin ? (
+          <div className="flex justify-center mt-4">
+            <div className="xl:w-[40%] w-[30%]">
+              <Button text={"Adicionar membro"} action={navigation} />
+            </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </Box>
     </>
   );
 };

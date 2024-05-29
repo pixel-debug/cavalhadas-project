@@ -59,20 +59,22 @@ export const DynamicForm = <T extends FieldValues>({
                 );
               case "checkbox":
                 return (
-                  <Checkbox
-                    key={field.id}
-                    label={field.label}
-                    id={field.id}
-                    register={register(field.name as Path<T>)}
-                  />
+                  <>
+                    <Checkbox
+                      key={field.id}
+                      label={field.label}
+                      id={field.id}
+                      register={register(field.name as Path<T>)}
+                    />
+                    <p className="text-xs font-montserrat text-neutral-800 mt-2">
+                      * Caso for uma amazonas, por favor, não selecione nada
+                    </p>
+                  </>
                 );
               default:
                 return null;
             }
           })}
-          <p className="text-xs font-montserrat text-neutral-800 mt-2">
-            * Caso for uma amazonas, por favor, não selecione nada
-          </p>
         </div>
         <div className="xl:w-[40%] w-full xl:pl-0 pl-10">
           {fields.some((field) => field.type === "image") && (

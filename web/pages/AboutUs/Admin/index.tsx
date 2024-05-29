@@ -3,7 +3,7 @@ import { FormField, Member } from "@/types/types";
 import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { AdminContext } from "@/context/useAdminContext";
-import { convertFileToString } from "@/utils/formatters";
+import { convertFileToString, dateToString } from "@/utils/formatters";
 import { useContext } from "react";
 import { useMutation } from "react-query";
 import { createMember } from "@/external/api/memberApi";
@@ -27,6 +27,8 @@ const AddMember = () => {
       const file = data.image[0];
       const imageData = await convertFileToString(file);
       data.image = imageData;
+      data.memberSince = dateToString(data.memberSince);
+      console.log(data.memberSince);
     }
     const member = {
       ...data,

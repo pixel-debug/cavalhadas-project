@@ -1,7 +1,9 @@
 import { NewsContentProps, Post } from "@/types/types";
 import { CustomImage } from "../common/image";
 import { useForm } from "react-hook-form";
-import { formatDateToString, imageSrc } from "@/utils/formatters";
+import { formatDate, imageSrc } from "@/utils/formatters";
+import { useMutation } from "react-query";
+import { updatePost } from "@/external/api/postApi";
 
 export const NewsContent = ({
   selectedNews,
@@ -15,8 +17,12 @@ export const NewsContent = ({
     },
   });
 
+  const { mutate } = useMutation((postData: Post) => {
+    return updatePost(selectedNews.id, { ...postData });
+  });
+
   const onSubmit = (data: Post) => {
-    console.log(data);
+    mutate(data);
   };
 
   const handleTitleChange = (event: React.FocusEvent<HTMLParagraphElement>) => {
@@ -43,7 +49,7 @@ export const NewsContent = ({
         />
       </div>
       <p className="font-montserrat text-xs xl:text-xm text-neutral-600">
-        {formatDateToString(selectedNews.createdAt)}
+        {formatDate(selectedNews.createdAt)}
       </p>
       <p
         className="my-5 font-montserrat text-lg xl:text-2xl text-neutral-900"

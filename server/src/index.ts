@@ -10,7 +10,7 @@ import sponsorRouter from "./presentation/router/sponsor.router";
 import adminFactory from "./presentation/factories/adminFactory";
 import adminRouter from "./presentation/router/admin.router";
 import cors from "cors";
-import admin from "./utils/firebase/serviceAccountKey";
+import admin from "./utils/firebase/confg";
 
 const app = express();
 admin.firestore();

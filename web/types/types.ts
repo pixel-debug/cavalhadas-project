@@ -45,7 +45,7 @@ export type Member = {
   name: string;
   role: string;
   image: File | string;
-  memberSince: string;
+  memberSince: Date | string;
   isAdm: boolean;
   isMale: boolean;
 };
