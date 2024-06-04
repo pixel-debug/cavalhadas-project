@@ -5,11 +5,16 @@ import { Checkbox } from "../checkbox";
 import { ImageUpload } from "./imagePreview";
 import { TextArea } from "../textArea";
 import { DynamicFormProps } from "@/types/types";
+import { convertFileToString } from "@/utils/formatters";
+import { useContext } from "react";
+import { AdminContext } from "@/context/useAdminContext";
 
 export const DynamicForm = <T extends FieldValues>({
   fields,
   onSubmit,
 }: DynamicFormProps<T>) => {
+  const { admin } = useContext(AdminContext);
+
   const {
     register,
     handleSubmit,
@@ -18,7 +23,13 @@ export const DynamicForm = <T extends FieldValues>({
   } = useForm<T>();
 
   const handleForm = async (data: T) => {
-    onSubmit(data);
+    let imageData = data.image;
+    if (data.image instanceof FileList) {
+      const file = data.image[0];
+      imageData = await convertFileToString(file);
+    }
+
+    onSubmit({ ...data, authorId: admin ? admin.id : 0, image: imageData });
     reset();
   };
 
