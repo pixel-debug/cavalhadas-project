@@ -1,6 +1,5 @@
 import { SponsorResponse } from "../domain/entities/sponsor/dto/SponsorResponse.dto";
 import { SponsorUseCase } from "../domain/useCases/sponsorUseCase";
-import FirebaseImage from "../utils/firebase/firebase";
 import { HttpMessages, HttpStatus } from "../utils/httpResponse";
 import { IController } from "./interfaces/IController";
 import { Request, Response } from "express";
@@ -36,15 +35,6 @@ export class SponsorController implements IController<SponsorResponse> {
   async create(req: Request, res: Response): Promise<void> {
     try {
       const body = req.body;
-      const imageBase64 = body.image;
-      if (!imageBase64) {
-        res
-          .status(HttpStatus.BAD_REQUEST)
-          .json({ error: "No image data found." });
-        return;
-      }
-      const imageUrl = await FirebaseImage(imageBase64);
-      body.image = imageUrl;
 
       const sponsor = await this.sponsorUseCase.create(body);
       res.status(HttpStatus.OK).json(sponsor);

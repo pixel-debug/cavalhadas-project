@@ -5,9 +5,9 @@ import { Checkbox } from "../checkbox";
 import { ImageUpload } from "./imagePreview";
 import { TextArea } from "../textArea";
 import { DynamicFormProps } from "@/types/types";
-import { convertFileToString } from "@/utils/formatters";
 import { useContext } from "react";
 import { AdminContext } from "@/context/useAdminContext";
+import FirebaseImage from "@/external/firebase/firebaseImageURL";
 
 export const DynamicForm = <T extends FieldValues>({
   fields,
@@ -26,7 +26,7 @@ export const DynamicForm = <T extends FieldValues>({
     let imageData = data.image;
     if (data.image instanceof FileList) {
       const file = data.image[0];
-      imageData = await convertFileToString(file);
+      imageData = await FirebaseImage(file);
     }
 
     onSubmit({ ...data, authorId: admin ? admin.id : 0, image: imageData });

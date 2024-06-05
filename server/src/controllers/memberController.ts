@@ -1,6 +1,5 @@
 import { MemberResponse } from "../domain/entities/member/dto/MemberResponse.dto";
 import { MemberUseCase } from "../domain/useCases/memberUseCase";
-import FirebaseImage from "../utils/firebase/firebase";
 import { HttpMessages, HttpStatus } from "../utils/httpResponse";
 import { IController } from "./interfaces/IController";
 import { Request, Response } from "express";
@@ -36,16 +35,6 @@ export class MemberController implements IController<MemberResponse> {
   async create(req: Request, res: Response): Promise<void> {
     try {
       const memberData = req.body;
-      const imageBase64 = memberData.image;
-      if (!imageBase64) {
-        res
-          .status(HttpStatus.BAD_REQUEST)
-          .json({ error: "No image data found." });
-        return;
-      }
-      const imageUrl = await FirebaseImage(imageBase64);
-      memberData.image = imageUrl;
-
       const member = await this.memberUseCase.create(memberData);
       res.status(HttpStatus.OK).json(member);
     } catch (error) {
