@@ -1,4 +1,3 @@
-import { newsArray } from "@/utils/mockedData/new";
 import { Button } from "@/components/common/button";
 import { useRouter } from "next/router";
 import { usedRouters } from "@/types/routers";

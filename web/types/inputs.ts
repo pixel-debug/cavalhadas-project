@@ -1,18 +1,21 @@
 const Inputs = {
   member: [
     {
+      type: "input",
       label: "Nome completo",
       id: "name",
       name: "name",
       placeholder: "Ex.: José da Silva",
     },
     {
+      type: "input",
       label: "Papel desempenhado",
       id: "role",
       name: "role",
       placeholder: "Ex.: cavaleiro mouro",
     },
     {
+      type: "input",
       label: "Data de entrada",
       id: "memberSince",
       name: "memberSince",
@@ -21,12 +24,14 @@ const Inputs = {
   ],
   memberCheckbox: [
     {
+      type: "checkbox",
       label: "Adminstrador",
       id: "isAdm",
       name: "isAdm",
       placeholder: "",
     },
     {
+      type: "checkbox",
       label: "Cavaleiro",
       id: "isMale",
       name: "isMale",
@@ -51,12 +56,14 @@ const Inputs = {
   ],
   sponsor: [
     {
+      type: "input",
       label: "Nome completo",
       id: "name",
       name: "name",
       placeholder: "Ex.: Lojas Americanas",
     },
     {
+      type: "input",
       label: "Valor contribuído",
       id: "sponsorship",
       name: "sponsorship",

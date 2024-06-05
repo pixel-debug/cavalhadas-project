@@ -5,7 +5,7 @@ import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
 import { createSponsor } from "@/external/api/sponsorApi";
 
-const AddSponsor = () => {
+export const AddSponsor = () => {
   const { mutate } = useMutation(createSponsor, {
     onSuccess: (data) => {
       console.log(data);
@@ -40,5 +40,3 @@ const AddSponsor = () => {
     </div>
   );
 };
-
-export default AddSponsor;

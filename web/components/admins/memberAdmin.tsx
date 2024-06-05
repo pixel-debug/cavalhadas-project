@@ -1,12 +1,12 @@
 import { Box } from "@/components/common/box";
-import { FormField, Post } from "@/types/types";
-import { createPost } from "@/external/api/postApi";
+import { FormField, Member } from "@/types/types";
 import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
+import { createMember } from "@/external/api/memberApi";
 
-const WritePost = () => {
-  const { mutate } = useMutation(createPost, {
+export const AddMember = () => {
+  const { mutate } = useMutation(createMember, {
     onSuccess: (data) => {
       console.log(data);
       const message = "success";
@@ -17,25 +17,30 @@ const WritePost = () => {
     },
   });
 
-  const handleSubmit = async (data: Post) => {
+  const handleSubmit = async (data: Member) => {
     mutate(data);
   };
 
-  const postFormFields: FormField[] = [
-    ...getInput("post").map((input) => ({
+  const memberFormFields: FormField[] = [
+    ...getInput("member").map((input) => ({
       ...input,
       type: "input" as const,
+    })),
+    ...getInput("memberCheckbox").map((input) => ({
+      ...input,
+      type: "checkbox" as const,
     })),
     { type: "image", id: "image", name: "image", label: "Imagem" },
   ];
 
   return (
     <div className="mt-10">
-      <Box title="Escreva uma postagem">
-        <DynamicForm<Post> fields={postFormFields} onSubmit={handleSubmit} />{" "}
+      <Box title="Preencha as informações do membro">
+        <DynamicForm<Member>
+          fields={memberFormFields}
+          onSubmit={handleSubmit}
+        />
       </Box>
     </div>
   );
 };
-
-export default WritePost;

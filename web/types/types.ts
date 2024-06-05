@@ -186,7 +186,7 @@ export type ImagePreviewProps = {
 };
 
 export type FormField = {
-  type: "input" | "textarea" | "checkbox" | "image";
+  type: string;
   id: string;
   name: string;
   label: string;
@@ -201,4 +201,8 @@ export type DynamicFormProps<T extends FieldValues> = {
 
 export type SponsorListProps = {
   sponsors: Sponsor[];
+};
+
+export type ComponentMap = {
+  [key: string]: () => JSX.Element;
 };
