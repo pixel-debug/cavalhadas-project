@@ -103,6 +103,7 @@ export type ButtonProps = {
   text: string;
   action?: (() => void) | any;
   type?: "button" | "submit" | "reset";
+  disable?: boolean;
 };
 
 export type BodyProps = {

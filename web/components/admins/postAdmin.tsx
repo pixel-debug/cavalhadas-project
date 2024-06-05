@@ -5,13 +5,13 @@ import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
 import { useState } from "react";
+import { Loading } from "../common/loading";
 
 export const WritePost = () => {
   const [loading, setLoading] = useState(false);
 
   const { mutate } = useMutation(createPost, {
     onSuccess: (data) => {
-      console.log(data);
       const message = "success";
       setLoading(false);
       alert(message);
@@ -39,7 +39,7 @@ export const WritePost = () => {
       <Box title="Escreva uma postagem">
         <DynamicForm<Post> fields={postFormFields} onSubmit={handleSubmit} />{" "}
       </Box>
-      {loading ? <>Loading</> : null}
+      {loading ? <Loading /> : null}
     </div>
   );
 };

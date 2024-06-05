@@ -19,8 +19,8 @@ const AdminTarget = () => {
   };
 
   const componentMap: ComponentMap = {
-    noticias: () => <AddMember />,
-    members: () => <WritePost />,
+    members: () => <AddMember />,
+    noticias: () => <WritePost />,
     sponsors: () => <AddSponsor />,
   };
 
