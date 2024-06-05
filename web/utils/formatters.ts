@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export const convertFileToString = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -11,14 +13,19 @@ export const convertFileToString = (file: File): Promise<string> => {
   });
 };
 
-export function formatDateToString(date: Date): string {
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
+export const formatDate = (date: Date): string => {
+  return format(date, "dd/MM/yyyy HH:mm");
+};
 
-  return `${day}/${month}/${year}`;
-}
+export const dateToString = (date: string | Date): Date => {
+  if (date instanceof Date) return date;
+  const parts = date.split("/");
+  const day = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10) - 1;
 
+  const year = parseInt(parts[2], 10);
+  return new Date(year, month, day);
+};
 export function imageSrc(source: string | File): string {
   return typeof source === "string" ? source : URL.createObjectURL(source);
 }

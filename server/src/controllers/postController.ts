@@ -1,6 +1,5 @@
 import { PostResponse } from "../domain/entities/post/dto/PostResponse.dto";
 import { PostUseCase } from "../domain/useCases/postUseCase";
-import FirebaseImage from "../utils/firebase/firebase";
 import { HttpStatus, HttpMessages } from "../utils/httpResponse";
 import { IController } from "./interfaces/IController";
 import { Request, Response } from "express";
@@ -38,17 +37,6 @@ export class PostController implements IController<PostResponse> {
   async create(req: Request, res: Response): Promise<void> {
     try {
       const postData = req.body;
-      const imageBase64 = postData.image;
-      if (!imageBase64) {
-        res
-          .status(HttpStatus.BAD_REQUEST)
-          .json({ error: "No image data found." });
-        return;
-      }
-      const imageUrl = await FirebaseImage(imageBase64);
-      postData.image = imageUrl;
-
-      console.log(postData);
       const post = await this.postUseCase.create(postData);
 
       res.status(HttpStatus.CREATED).json(post);

@@ -3,7 +3,7 @@ import { api } from ".";
 
 export const getMembers = async (): Promise<Member[]> => {
   try {
-    const memberData = await api<Member[]>("/member");
+    const memberData = await api<Member[]>("/members");
     return memberData;
   } catch (error) {
     throw error;
@@ -12,7 +12,8 @@ export const getMembers = async (): Promise<Member[]> => {
 
 export const createMember = async (data: Member) => {
   try {
-    const responseData = await api<Member>("/member", "POST", data);
+    console.log(data);
+    const responseData = await api<Member>("/members", "POST", data);
     return responseData;
   } catch (error) {
     throw error;
@@ -21,7 +22,7 @@ export const createMember = async (data: Member) => {
 
 export const updateMember = async (id: number, data: Member) => {
   try {
-    const responseData = await api<Member>(`/member/${id}`, "PUT", data);
+    const responseData = await api<Member>(`/members/${id}`, "PUT", data);
     return responseData;
   } catch (error) {
     throw error;
@@ -30,7 +31,7 @@ export const updateMember = async (id: number, data: Member) => {
 
 export const deleteMember = async (id: number) => {
   try {
-    const responseData = await api<Member>(`/member/${id}`, "DELETE");
+    const responseData = await api<Member>(`/members/${id}`, "DELETE");
     return responseData;
   } catch (error) {
     throw error;

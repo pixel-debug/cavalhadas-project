@@ -28,7 +28,7 @@ export const createPost = async (data: Post) => {
   }
 };
 
-export const updatePost = async (id: number, data: Post) => {
+export const updatePost = async (id: number, data: Post): Promise<Post> => {
   try {
     const responseData = await api<Post>(`/posts/${id}`, "PUT", data);
     return responseData;

@@ -16,7 +16,7 @@ export const Authentication = (
       token,
       process.env.JWT_SECRET as string
     ) as jwt.JwtPayload;
-    console.log(decode);
+
     req.user = decode;
     next();
   } catch (error) {

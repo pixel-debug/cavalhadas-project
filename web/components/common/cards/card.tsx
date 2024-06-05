@@ -1,6 +1,6 @@
 import { CardProps } from "@/types/types";
 import { CustomImage } from "../image";
-import { imageSrc, formatDateToString } from "@/utils/formatters";
+import { imageSrc, formatDate } from "@/utils/formatters";
 
 export const Card = ({ news, navigation }: CardProps) => {
   return (
@@ -10,7 +10,7 @@ export const Card = ({ news, navigation }: CardProps) => {
       </div>
 
       <p className="text-xs text-neutral-600 font-montserrat">
-        {formatDateToString(news.createdAt)}
+        {formatDate(news.createdAt)}
       </p>
       <p className="text-lg text-neutral-900 font-montserrat leading-tight line-clamp-3">
         {news.title}

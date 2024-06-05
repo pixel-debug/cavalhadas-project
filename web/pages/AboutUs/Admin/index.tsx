@@ -2,15 +2,10 @@ import { Box } from "@/components/common/box";
 import { FormField, Member } from "@/types/types";
 import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
-import { AdminContext } from "@/context/useAdminContext";
-import { convertFileToString } from "@/utils/formatters";
-import { useContext } from "react";
 import { useMutation } from "react-query";
 import { createMember } from "@/external/api/memberApi";
 
 const AddMember = () => {
-  const { admin } = useContext(AdminContext);
-
   const { mutate } = useMutation(createMember, {
     onSuccess: (data) => {
       console.log(data);
@@ -23,17 +18,7 @@ const AddMember = () => {
   });
 
   const handleSubmit = async (data: Member) => {
-    if (data.image instanceof FileList) {
-      const file = data.image[0];
-      const imageData = await convertFileToString(file);
-      data.image = imageData;
-    }
-    const member = {
-      ...data,
-      authorId: admin ? admin.id : 0,
-    };
-
-    mutate(member);
+    mutate(data);
   };
 
   const memberFormFields: FormField[] = [
