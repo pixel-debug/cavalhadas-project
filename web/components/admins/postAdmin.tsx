@@ -1,19 +1,14 @@
 import { Box } from "@/components/common/box";
 import { FormField, Post } from "@/types/types";
 import { createPost } from "@/external/api/postApi";
-import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
-import { useState } from "react";
-import { Loading } from "../common/loading";
+import { Form } from "@/components/common/form";
 
 export const WritePost = () => {
-  const [loading, setLoading] = useState(false);
-
   const { mutate } = useMutation(createPost, {
     onSuccess: (data) => {
       const message = "success";
-      setLoading(false);
       alert(message);
     },
     onError: () => {
@@ -22,7 +17,6 @@ export const WritePost = () => {
   });
 
   const handleSubmit = async (data: Post) => {
-    setLoading(true);
     mutate(data);
   };
 
@@ -37,9 +31,8 @@ export const WritePost = () => {
   return (
     <div className="mt-10">
       <Box title="Escreva uma postagem">
-        <DynamicForm<Post> fields={postFormFields} onSubmit={handleSubmit} />{" "}
+        <Form<Post> fields={postFormFields} onSubmit={handleSubmit} />{" "}
       </Box>
-      {loading ? <Loading /> : null}
     </div>
   );
 };

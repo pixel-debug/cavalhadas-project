@@ -22,6 +22,11 @@ export class PostUseCase
   async getAll(): Promise<PostResponse[]> {
     return await this.postRepository.getAll();
   }
+
+  async getPaginated(limit: number, page: number): Promise<PostResponse[]> {
+    return await this.postRepository.getPaginated(limit, page);
+  }
+
   async create(entity: CreatePostRequest): Promise<PostResponse> {
     const createdPost = await this.postRepository.create(entity);
     createdPost.published = true;

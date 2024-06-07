@@ -1,14 +1,13 @@
 import { Box } from "@/components/common/box";
 import { FormField, Sponsor } from "@/types/types";
-import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
 import { createSponsor } from "@/external/api/sponsorApi";
+import { Form } from "../common/form";
 
 export const AddSponsor = () => {
   const { mutate } = useMutation(createSponsor, {
     onSuccess: (data) => {
-      console.log(data);
       const message = "success";
       alert(message);
     },
@@ -32,10 +31,7 @@ export const AddSponsor = () => {
   return (
     <div className="mt-10">
       <Box title="Preencha as informações do patrocinador">
-        <DynamicForm<Sponsor>
-          fields={sponsorFormFields}
-          onSubmit={handleSubmit}
-        />
+        <Form<Sponsor> fields={sponsorFormFields} onSubmit={handleSubmit} />
       </Box>
     </div>
   );

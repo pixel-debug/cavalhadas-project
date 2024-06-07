@@ -4,11 +4,11 @@ import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
 import { createMember } from "@/external/api/memberApi";
+import { Form } from "../common/form";
 
 export const AddMember = () => {
   const { mutate } = useMutation(createMember, {
     onSuccess: (data) => {
-      console.log(data);
       const message = "success";
       alert(message);
     },
@@ -36,10 +36,7 @@ export const AddMember = () => {
   return (
     <div className="mt-10">
       <Box title="Preencha as informações do membro">
-        <DynamicForm<Member>
-          fields={memberFormFields}
-          onSubmit={handleSubmit}
-        />
+        <Form<Member> fields={memberFormFields} onSubmit={handleSubmit} />
       </Box>
     </div>
   );

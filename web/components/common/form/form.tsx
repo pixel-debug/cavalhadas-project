@@ -5,16 +5,11 @@ import { Checkbox } from "../checkbox";
 import { ImageUpload } from "./imagePreview";
 import { TextArea } from "../textArea";
 import { DynamicFormProps } from "@/types/types";
-import { useContext, useState } from "react";
-import { AdminContext } from "@/context/useAdminContext";
-import FirebaseImage from "@/external/firebase/firebaseImageURL";
 
 export const DynamicForm = <T extends FieldValues>({
   fields,
   onSubmit,
 }: DynamicFormProps<T>) => {
-  const { admin } = useContext(AdminContext);
-  const [disableButton, setDisableButton] = useState(false);
   const {
     register,
     handleSubmit,
@@ -23,14 +18,7 @@ export const DynamicForm = <T extends FieldValues>({
   } = useForm<T>();
 
   const handleForm = async (data: T) => {
-    setDisableButton(true);
-    let imageData = data.image;
-    if (data.image instanceof FileList) {
-      const file = data.image[0];
-      imageData = await FirebaseImage(file);
-    }
-
-    onSubmit({ ...data, authorId: admin ? admin.id : 0, image: imageData });
+    onSubmit(data);
     reset();
   };
 
@@ -96,7 +84,7 @@ export const DynamicForm = <T extends FieldValues>({
       </div>
       <div className="flex justify-end mt-4">
         <div className="xl:w-[40%] w-[45%]">
-          <Button type="submit" text={"Salvar"} disable={disableButton} />
+          <Button type="submit" text={"Salvar"} />
         </div>
       </div>
     </form>

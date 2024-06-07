@@ -1,30 +1,55 @@
 import { Button } from "@/components/common/button";
 import { CardDeck } from "@/components/common/cards";
 import { AdminContext } from "@/context/useAdminContext";
-import { getPosts } from "@/external/api/postApi";
+import { getPaginatedPosts, getPosts } from "@/external/api/postApi";
 import { PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useQuery } from "react-query";
+import { IoMdArrowDropright, IoMdArrowDropleft } from "react-icons/io";
 
 const NewsPage = () => {
   const router = useRouter();
+  const [pageNumber, setPageNumber] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const navigation = () => {
     router.push(usedRouters(PagesRouters.ADMIN_NEWS_PAGE));
   };
   const { admin } = useContext(AdminContext);
-  const { data } = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-  });
+  const { data } = useQuery(
+    ["posts", pageNumber],
+    () => getPaginatedPosts(pageNumber),
+    {
+      keepPreviousData: true,
+      onSuccess: (fetchedData) => {
+        setHasMore(fetchedData.length === 6);
+      },
+    }
+  );
 
   return (
     <>
       {data && (
-        <div className="flex p-10">
-          <CardDeck news={data} />
-        </div>
+        <>
+          <div className="flex p-10">
+            <CardDeck news={data} />
+          </div>
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setPageNumber(pageNumber - 1)}
+              disabled={pageNumber === 1}
+            >
+              <IoMdArrowDropleft />
+            </button>
+            <button
+              onClick={() => setPageNumber(pageNumber + 1)}
+              disabled={!hasMore}
+            >
+              <IoMdArrowDropright />
+            </button>
+          </div>{" "}
+        </>
       )}
 
       {admin ? (

@@ -11,7 +11,7 @@ export const Loading = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-100">
+    <div className="fixed inset-0 flex items-center bg-neutral-200 bg-opacity-75 justify-center z-100">
       {show ? (
         <Image src={spinner} alt={"spinner"} width={100} height={100} />
       ) : null}

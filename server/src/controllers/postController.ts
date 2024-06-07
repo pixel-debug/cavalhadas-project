@@ -34,6 +34,23 @@ export class PostController implements IController<PostResponse> {
     }
   }
 
+  async getPaginated(req: Request, res: Response): Promise<PostResponse[]> {
+    try {
+      const { _limit = 10, _page = 1 } = req.query;
+      const limit = parseInt(_limit as string, 10);
+      const page = parseInt(_page as string, 10);
+
+      const posts = await this.postUseCase.getPaginated(limit, page);
+      res.status(HttpStatus.OK).json(posts);
+      return posts;
+    } catch (error) {
+      console.error(error);
+      res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: HttpMessages.INTERNAL_SERVER_ERROR });
+    }
+  }
+
   async create(req: Request, res: Response): Promise<void> {
     try {
       const postData = req.body;

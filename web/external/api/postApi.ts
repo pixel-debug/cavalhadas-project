@@ -10,6 +10,19 @@ export const getPosts = async (): Promise<Post[]> => {
   }
 };
 
+export const getPaginatedPosts = async (
+  pageNumber: number
+): Promise<Post[]> => {
+  try {
+    const postData = await api<Post[]>(
+      `/posts/paginated?_limit=6&_page=${pageNumber}`
+    );
+    return postData;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getPost = async (id: number): Promise<Post> => {
   try {
     const postData = await api<Post>(`/posts/${id}`);

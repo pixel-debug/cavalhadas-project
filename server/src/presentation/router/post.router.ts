@@ -20,6 +20,10 @@ export default function postRouter(controller: PostController) {
     controller.getAll(req, res);
   });
 
+  router.get("/paginated", (req: Request, res: Response) => {
+    controller.getPaginated(req, res);
+  });
+
   router.get("/:id", (req: Request, res: Response) => {
     controller.get(req, res);
   });
