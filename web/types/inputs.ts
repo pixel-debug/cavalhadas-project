@@ -15,14 +15,12 @@ const Inputs = {
       placeholder: "Ex.: cavaleiro mouro",
     },
     {
-      type: "input",
+      type: "date",
       label: "Data de entrada",
       id: "memberSince",
       name: "memberSince",
       placeholder: "Ex.: 20/08/2012",
     },
-  ],
-  memberCheckbox: [
     {
       type: "checkbox",
       label: "Adminstrador",
@@ -31,7 +29,7 @@ const Inputs = {
       placeholder: "",
     },
     {
-      type: "checkbox",
+      type: "toogle",
       label: "Cavaleiro",
       id: "isMale",
       name: "isMale",
@@ -63,7 +61,7 @@ const Inputs = {
       placeholder: "Ex.: Lojas Americanas",
     },
     {
-      type: "input",
+      type: "number",
       label: "Valor contribuído",
       id: "sponsorship",
       name: "sponsorship",

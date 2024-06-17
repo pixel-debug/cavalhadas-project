@@ -20,16 +20,13 @@ export const AddSponsor = () => {
     mutate(data);
   };
 
-  const sponsorFormFields: FormField[] = [
-    ...getInput("sponsor").map((input) => ({
-      ...input,
-      type: "input" as const,
-    })),
+  const sponsorFormFields = [
+    ...getInput("sponsor"),
     { type: "image", id: "image", name: "image", label: "Imagem" },
   ];
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 flex items-center">
       <Box title="Preencha as informações do patrocinador">
         <Form<Sponsor> fields={sponsorFormFields} onSubmit={handleSubmit} />
       </Box>

@@ -28,17 +28,20 @@ const AboutUsPage = () => {
           <AboutUsIntroText />
         </div>
       </div>
-      <Box title={"Quem somos"}>
+      <div className="flex items-center">
         {data && data.length > 0 ? (
-          <SliderComponent subjects={data} />
-        ) : admin ? (
-          <div className="flex justify-center mt-4">
-            <div className="xl:w-[40%] w-[30%]">
-              <Button text={"Adicionar membro"} action={navigation} />
-            </div>
-          </div>
+          <Box title={"Quem somos"}>
+            <SliderComponent subjects={data} />
+          </Box>
         ) : null}
-      </Box>
+      </div>
+      {admin ? (
+        <div className="flex justify-center mt-4">
+          <div className="xl:w-[40%] w-[30%]">
+            <Button text={"Adicionar membro"} action={navigation} />
+          </div>
+        </div>
+      ) : null}
     </>
   );
 };

@@ -10,7 +10,6 @@ export const Form = <T extends FieldValues>({
   fields,
   onSubmit,
 }: DynamicFormProps<T>) => {
-  const { admin } = useContext(AdminContext);
   const [loading, setLoading] = useState(false);
 
   const handleForm = async (data: T) => {
@@ -21,7 +20,7 @@ export const Form = <T extends FieldValues>({
       imageData = await FirebaseImage(file);
     }
 
-    onSubmit({ ...data, authorId: admin ? admin.id : 0, image: imageData });
+    onSubmit({ ...data, image: imageData });
     setLoading(false);
   };
 

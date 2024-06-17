@@ -7,12 +7,14 @@ export const InputField = ({
   placeholder,
   register,
   error,
+  type,
 }: InputProps) => (
   <>
     <Input
       label={label}
       register={register}
       id={id}
+      type={type}
       placeholder={placeholder}
     />
     {error && <p className="mt-2 text-sm text-red-600">{error.message}</p>}

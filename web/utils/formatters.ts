@@ -13,8 +13,8 @@ export const convertFileToString = (file: File): Promise<string> => {
   });
 };
 
-export const formatDate = (date: Date): string => {
-  return format(date, "dd/MM/yyyy HH:mm");
+export const formatDate = (date: string | Date, withHour?: boolean): string => {
+  return format(date, withHour ? "dd/MM/yyyy HH:mm" : "dd/MM/yyyy");
 };
 
 export const dateToString = (date: string | Date): Date => {

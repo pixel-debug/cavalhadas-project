@@ -8,6 +8,7 @@ import { BannerMockedTitle, BannerMockedText } from "@/utils/texts";
 import { PagesRouters } from "@/types/enums";
 import { getPosts } from "@/external/api/postApi";
 import { useQuery } from "react-query";
+import image from "../assets/images/home.jpg";
 
 export default function Home() {
   const router = useRouter();
@@ -17,8 +18,6 @@ export default function Home() {
 
   const title = BannerMockedTitle;
   const text = BannerMockedText;
-  const image =
-    "https://www.ipatrimonio.org/wp-content/uploads/2018/11/ipatrimonio_Ouro-Preto-Cavalhada-_Foto-Ane-Souz-Fonte-Prefeitura-Municipal.jpg";
 
   const { data } = useQuery({
     queryKey: ["posts"],
@@ -37,14 +36,16 @@ export default function Home() {
         hasButton
         isMainPage
       />
-      <Box title={"Últimas noticias"}>
-        <div className="flex flex-col items-center">
-          <CardDeck news={news} />
-          <div className="xl:w-1/6 w-1/3 mt-10">
-            <Button text={"Ver mais"} action={navigation} />
+      <div className="flex items-center">
+        <Box title={"Últimas noticias"}>
+          <div className="flex flex-col items-center">
+            <CardDeck news={news} />
+            <div className="xl:w-1/6 w-1/3 mt-10">
+              <Button text={"Ver mais"} action={navigation} />
+            </div>
           </div>
-        </div>
-      </Box>
+        </Box>
+      </div>
     </>
   );
 }

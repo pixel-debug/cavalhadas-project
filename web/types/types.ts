@@ -31,21 +31,12 @@ export type Post = {
   createdAt: Date;
 };
 
-export type MemberType = {
-  name: string;
-  role: string;
-  image: File | string;
-  memberSince: Date;
-  isAdm: boolean;
-  isMale: boolean;
-};
-
 export type Member = {
   id: number;
   name: string;
   role: string;
-  image: File | string;
-  memberSince: string;
+  image: string;
+  memberSince: Date;
   isAdm: boolean;
   isMale: boolean;
 };

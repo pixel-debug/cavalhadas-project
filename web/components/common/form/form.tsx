@@ -5,6 +5,7 @@ import { Checkbox } from "../checkbox";
 import { ImageUpload } from "./imagePreview";
 import { TextArea } from "../textArea";
 import { DynamicFormProps } from "@/types/types";
+import { Toggle } from "./toogle";
 
 export const DynamicForm = <T extends FieldValues>({
   fields,
@@ -33,6 +34,8 @@ export const DynamicForm = <T extends FieldValues>({
 
             switch (field.type) {
               case "input":
+              case "date":
+              case "number":
                 return (
                   <InputField
                     key={field.id}
@@ -41,7 +44,9 @@ export const DynamicForm = <T extends FieldValues>({
                     placeholder={field.placeholder}
                     register={register(field.name as Path<T>, {
                       required: field.required,
+                      valueAsNumber: field.type === "number" ? true : false,
                     })}
+                    type={field.type}
                     error={error}
                   />
                 );
@@ -59,17 +64,21 @@ export const DynamicForm = <T extends FieldValues>({
                 );
               case "checkbox":
                 return (
-                  <>
-                    <Checkbox
-                      key={field.id}
-                      label={field.label}
-                      id={field.id}
-                      register={register(field.name as Path<T>)}
-                    />
-                    <p className="text-xs font-montserrat text-neutral-800 mt-2">
-                      * Caso for uma amazonas, por favor, não selecione nada
-                    </p>
-                  </>
+                  <Checkbox
+                    key={field.id}
+                    label={field.label}
+                    id={field.id}
+                    register={register(field.name as Path<T>)}
+                  />
+                );
+              case "toogle":
+                return (
+                  <Toggle
+                    key={field.id}
+                    label={field.label}
+                    id={field.id}
+                    register={register(field.name as Path<T>)}
+                  />
                 );
               default:
                 return null;
