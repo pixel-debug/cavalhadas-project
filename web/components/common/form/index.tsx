@@ -1,5 +1,5 @@
 import { AdminContext } from "@/context/useAdminContext";
-import FirebaseImage from "@/external/firebase/firebaseImageURL";
+import { createImageOnFirebase } from "@/external/firebase/firebaseImageURL";
 import { DynamicFormProps } from "@/types/types";
 import { useContext, useState } from "react";
 import { FieldValues } from "react-hook-form";
@@ -17,7 +17,7 @@ export const Form = <T extends FieldValues>({
     let imageData = data.image;
     if (data.image instanceof FileList) {
       const file = data.image[0];
-      imageData = await FirebaseImage(file);
+      imageData = await createImageOnFirebase(file);
     }
 
     onSubmit({ ...data, image: imageData });

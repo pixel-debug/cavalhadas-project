@@ -1,6 +1,7 @@
 import { AboutUsIntroText } from "@/components/aboutUs/intro";
 import { Box } from "@/components/common/box";
 import { Button } from "@/components/common/button";
+import { NoContent } from "@/components/common/noContent";
 import { SliderComponent } from "@/components/common/slider";
 import { AdminContext } from "@/context/useAdminContext";
 import { getMembers } from "@/external/api/memberApi";
@@ -33,7 +34,9 @@ const AboutUsPage = () => {
           <Box title={"Quem somos"}>
             <SliderComponent subjects={data} />
           </Box>
-        ) : null}
+        ) : (
+          <NoContent />
+        )}
       </div>
       {admin ? (
         <div className="flex justify-center mt-4">
