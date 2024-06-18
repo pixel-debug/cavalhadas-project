@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import { IoMdArrowDropright, IoMdArrowDropleft } from "react-icons/io";
+import { NoContent } from "@/components/common/noContent";
 
 const NewsPage = () => {
   const router = useRouter();
@@ -35,20 +36,24 @@ const NewsPage = () => {
           <div className="flex p-10">
             <CardDeck news={data} />
           </div>
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={() => setPageNumber(pageNumber - 1)}
-              disabled={pageNumber === 1}
-            >
-              <IoMdArrowDropleft />
-            </button>
-            <button
-              onClick={() => setPageNumber(pageNumber + 1)}
-              disabled={!hasMore}
-            >
-              <IoMdArrowDropright />
-            </button>
-          </div>{" "}
+          {data.length > 0 ? (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={() => setPageNumber(pageNumber - 1)}
+                disabled={pageNumber === 1}
+              >
+                <IoMdArrowDropleft />
+              </button>
+              <button
+                onClick={() => setPageNumber(pageNumber + 1)}
+                disabled={!hasMore}
+              >
+                <IoMdArrowDropright />
+              </button>
+            </div>
+          ) : (
+            <NoContent />
+          )}
         </>
       )}
 

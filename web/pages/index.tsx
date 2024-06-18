@@ -9,6 +9,7 @@ import { PagesRouters } from "@/types/enums";
 import { getPosts } from "@/external/api/postApi";
 import { useQuery } from "react-query";
 import image from "../assets/images/home.jpg";
+import { NoContent } from "@/components/common/noContent";
 
 export default function Home() {
   const router = useRouter();
@@ -36,15 +37,19 @@ export default function Home() {
         hasButton
         isMainPage
       />
-      <div className="flex items-center">
-        <Box title={"Últimas noticias"}>
-          <div className="flex flex-col items-center">
-            <CardDeck news={news} />
-            <div className="xl:w-1/6 w-1/3 mt-10">
-              <Button text={"Ver mais"} action={navigation} />
+      <div className="flex items-center justify-center">
+        {news.length > 0 ? (
+          <Box title={"Últimas noticias"}>
+            <div className="flex flex-col items-center">
+              <CardDeck news={news} />
+              <div className="xl:w-1/6 w-1/3 mt-10">
+                <Button text={"Ver mais"} action={navigation} />
+              </div>
             </div>
-          </div>
-        </Box>
+          </Box>
+        ) : (
+          <NoContent />
+        )}
       </div>
     </>
   );

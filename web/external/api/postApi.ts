@@ -50,7 +50,7 @@ export const updatePost = async (id: number, data: Post): Promise<Post> => {
   }
 };
 
-export const deletePost = async (id: number) => {
+export const removePost = async (id: number) => {
   try {
     const responseData = await api<Post>(`/posts/${id}`, "DELETE");
     return responseData;

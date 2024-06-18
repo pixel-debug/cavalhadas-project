@@ -117,6 +117,7 @@ export type CardType = {
 export type CardProps = {
   news: Post;
   navigation: (path: number) => void;
+  deletePost: (post: Post) => void;
 };
 
 export type DeckCardProps = {
