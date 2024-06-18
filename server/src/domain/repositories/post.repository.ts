@@ -26,7 +26,17 @@ export class PostRepository
     });
   }
   async getAll(): Promise<PostResponse[]> {
-    return await this.prisma.post.findMany();
+    return await this.prisma.post.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  }
+  async getPaginated(limit: number, page: number): Promise<PostResponse[]> {
+    const skip = (page - 1) * limit;
+    return await this.prisma.post.findMany({
+      take: limit,
+      skip: skip,
+      orderBy: { createdAt: "desc" },
+    });
   }
   async create(entity: CreatePostRequest): Promise<PostResponse> {
     return await this.prisma.post.create({

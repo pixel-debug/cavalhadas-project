@@ -31,21 +31,12 @@ export type Post = {
   createdAt: Date;
 };
 
-export type MemberType = {
-  name: string;
-  role: string;
-  image: File | string;
-  memberSince: Date;
-  isAdm: boolean;
-  isMale: boolean;
-};
-
 export type Member = {
   id: number;
   name: string;
   role: string;
-  image: File | string;
-  memberSince: string;
+  image: string;
+  memberSince: Date;
   isAdm: boolean;
   isMale: boolean;
 };
@@ -103,6 +94,7 @@ export type ButtonProps = {
   text: string;
   action?: (() => void) | any;
   type?: "button" | "submit" | "reset";
+  disable?: boolean;
 };
 
 export type BodyProps = {
@@ -125,6 +117,7 @@ export type CardType = {
 export type CardProps = {
   news: Post;
   navigation: (path: number) => void;
+  deletePost: (post: Post) => void;
 };
 
 export type DeckCardProps = {
@@ -186,7 +179,7 @@ export type ImagePreviewProps = {
 };
 
 export type FormField = {
-  type: "input" | "textarea" | "checkbox" | "image";
+  type: string;
   id: string;
   name: string;
   label: string;
@@ -201,4 +194,8 @@ export type DynamicFormProps<T extends FieldValues> = {
 
 export type SponsorListProps = {
   sponsors: Sponsor[];
+};
+
+export type ComponentMap = {
+  [key: string]: () => JSX.Element;
 };

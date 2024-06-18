@@ -13,8 +13,8 @@ export const convertFileToString = (file: File): Promise<string> => {
   });
 };
 
-export const formatDate = (date: Date): string => {
-  return format(date, "dd/MM/yyyy HH:mm");
+export const formatDate = (date: string | Date, withHour?: boolean): string => {
+  return format(date, withHour ? "dd/MM/yyyy HH:mm" : "dd/MM/yyyy");
 };
 
 export const dateToString = (date: string | Date): Date => {
@@ -26,6 +26,18 @@ export const dateToString = (date: string | Date): Date => {
   const year = parseInt(parts[2], 10);
   return new Date(year, month, day);
 };
+
 export function imageSrc(source: string | File): string {
   return typeof source === "string" ? source : URL.createObjectURL(source);
+}
+
+export function getFilename(imageURL: string): string {
+  const start = imageURL.lastIndexOf("%2F") + 3;
+  const end = imageURL.indexOf("?");
+
+  if (start !== -1 && end !== -1) {
+    const filename = imageURL.substring(start, end);
+    return filename;
+  }
+  return "";
 }

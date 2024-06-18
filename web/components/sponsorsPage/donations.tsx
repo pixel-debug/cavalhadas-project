@@ -7,7 +7,7 @@ export const Donations = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="py-10 flex items-center">
       <Box>
         <div className="p-10 flex xl:flex-row flex-col items-center">
           <p className="xl:pb-0 pb-10 w-[80%] text-neutral-50 font-montserrat text-2xl">

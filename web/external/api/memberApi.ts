@@ -29,7 +29,7 @@ export const updateMember = async (id: number, data: Member) => {
   }
 };
 
-export const deleteMember = async (id: number) => {
+export const removeMember = async (id: number) => {
   try {
     const responseData = await api<Member>(`/members/${id}`, "DELETE");
     return responseData;

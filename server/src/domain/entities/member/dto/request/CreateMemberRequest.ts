@@ -1,3 +1,4 @@
+import { Type } from "class-transformer";
 import { IsBoolean, IsDate, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateMemberRequest {
@@ -15,6 +16,7 @@ export class CreateMemberRequest {
 
   @IsDate()
   @IsNotEmpty()
+  @Type(() => Date)
   memberSince: Date;
 
   @IsBoolean()

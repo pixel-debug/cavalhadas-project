@@ -5,16 +5,12 @@ import { Checkbox } from "../checkbox";
 import { ImageUpload } from "./imagePreview";
 import { TextArea } from "../textArea";
 import { DynamicFormProps } from "@/types/types";
-import { useContext } from "react";
-import { AdminContext } from "@/context/useAdminContext";
-import FirebaseImage from "@/external/firebase/firebaseImageURL";
+import { Toggle } from "./toogle";
 
 export const DynamicForm = <T extends FieldValues>({
   fields,
   onSubmit,
 }: DynamicFormProps<T>) => {
-  const { admin } = useContext(AdminContext);
-
   const {
     register,
     handleSubmit,
@@ -23,13 +19,7 @@ export const DynamicForm = <T extends FieldValues>({
   } = useForm<T>();
 
   const handleForm = async (data: T) => {
-    let imageData = data.image;
-    if (data.image instanceof FileList) {
-      const file = data.image[0];
-      imageData = await FirebaseImage(file);
-    }
-
-    onSubmit({ ...data, authorId: admin ? admin.id : 0, image: imageData });
+    onSubmit(data);
     reset();
   };
 
@@ -44,6 +34,8 @@ export const DynamicForm = <T extends FieldValues>({
 
             switch (field.type) {
               case "input":
+              case "date":
+              case "number":
                 return (
                   <InputField
                     key={field.id}
@@ -52,7 +44,9 @@ export const DynamicForm = <T extends FieldValues>({
                     placeholder={field.placeholder}
                     register={register(field.name as Path<T>, {
                       required: field.required,
+                      valueAsNumber: field.type === "number" ? true : false,
                     })}
+                    type={field.type}
                     error={error}
                   />
                 );
@@ -70,17 +64,21 @@ export const DynamicForm = <T extends FieldValues>({
                 );
               case "checkbox":
                 return (
-                  <>
-                    <Checkbox
-                      key={field.id}
-                      label={field.label}
-                      id={field.id}
-                      register={register(field.name as Path<T>)}
-                    />
-                    <p className="text-xs font-montserrat text-neutral-800 mt-2">
-                      * Caso for uma amazonas, por favor, não selecione nada
-                    </p>
-                  </>
+                  <Checkbox
+                    key={field.id}
+                    label={field.label}
+                    id={field.id}
+                    register={register(field.name as Path<T>)}
+                  />
+                );
+              case "toogle":
+                return (
+                  <Toggle
+                    key={field.id}
+                    label={field.label}
+                    id={field.id}
+                    register={register(field.name as Path<T>)}
+                  />
                 );
               default:
                 return null;

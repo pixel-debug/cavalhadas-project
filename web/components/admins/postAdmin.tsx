@@ -1,14 +1,16 @@
 import { Box } from "@/components/common/box";
 import { FormField, Post } from "@/types/types";
 import { createPost } from "@/external/api/postApi";
-import { DynamicForm } from "@/components/common/form/form";
 import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
+import { Form } from "@/components/common/form";
+import { useContext } from "react";
+import { AdminContext } from "@/context/useAdminContext";
 
-const WritePost = () => {
+export const WritePost = () => {
+  const { admin } = useContext(AdminContext);
   const { mutate } = useMutation(createPost, {
     onSuccess: (data) => {
-      console.log(data);
       const message = "success";
       alert(message);
     },
@@ -18,24 +20,19 @@ const WritePost = () => {
   });
 
   const handleSubmit = async (data: Post) => {
-    mutate(data);
+    (data.authorId = admin ? admin.id : 0), mutate(data);
   };
 
-  const postFormFields: FormField[] = [
-    ...getInput("post").map((input) => ({
-      ...input,
-      type: "input" as const,
-    })),
+  const postFormFields = [
+    ...getInput("post"),
     { type: "image", id: "image", name: "image", label: "Imagem" },
   ];
 
   return (
-    <div className="mt-10">
+    <div className="mt-10  flex items-center">
       <Box title="Escreva uma postagem">
-        <DynamicForm<Post> fields={postFormFields} onSubmit={handleSubmit} />{" "}
+        <Form<Post> fields={postFormFields} onSubmit={handleSubmit} />{" "}
       </Box>
     </div>
   );
 };
-
-export default WritePost;

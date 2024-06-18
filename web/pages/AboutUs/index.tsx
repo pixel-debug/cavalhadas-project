@@ -1,6 +1,7 @@
 import { AboutUsIntroText } from "@/components/aboutUs/intro";
 import { Box } from "@/components/common/box";
 import { Button } from "@/components/common/button";
+import { NoContent } from "@/components/common/noContent";
 import { SliderComponent } from "@/components/common/slider";
 import { AdminContext } from "@/context/useAdminContext";
 import { getMembers } from "@/external/api/memberApi";
@@ -28,17 +29,22 @@ const AboutUsPage = () => {
           <AboutUsIntroText />
         </div>
       </div>
-      <Box title={"Quem somos"}>
+      <div className="flex items-center">
         {data && data.length > 0 ? (
-          <SliderComponent subjects={data} />
-        ) : admin ? (
-          <div className="flex justify-center mt-4">
-            <div className="xl:w-[40%] w-[30%]">
-              <Button text={"Adicionar membro"} action={navigation} />
-            </div>
+          <Box title={"Quem somos"}>
+            <SliderComponent subjects={data} />
+          </Box>
+        ) : (
+          <NoContent />
+        )}
+      </div>
+      {admin ? (
+        <div className="flex justify-center mt-4">
+          <div className="xl:w-[40%] w-[30%]">
+            <Button text={"Adicionar membro"} action={navigation} />
           </div>
-        ) : null}
-      </Box>
+        </div>
+      ) : null}
     </>
   );
 };

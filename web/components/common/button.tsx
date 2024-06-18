@@ -1,6 +1,6 @@
 import { ButtonProps } from "@/types/types";
 
-export const Button = ({ text, action, type }: ButtonProps) => {
+export const Button = ({ text, action, type, disable }: ButtonProps) => {
   const handleClick = () => {
     if (action) {
       action();
@@ -12,6 +12,7 @@ export const Button = ({ text, action, type }: ButtonProps) => {
       type={type}
       className="bg-blue-900 rounded p-2 w-full"
       onClick={handleClick}
+      disabled={disable}
     >
       <p className="text-sm lg:text-base text-neutral-50 font-montserrat flex justify-center px-2">
         {text}

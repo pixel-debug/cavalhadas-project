@@ -10,6 +10,19 @@ export const getPosts = async (): Promise<Post[]> => {
   }
 };
 
+export const getPaginatedPosts = async (
+  pageNumber: number
+): Promise<Post[]> => {
+  try {
+    const postData = await api<Post[]>(
+      `/posts/paginated?_limit=6&_page=${pageNumber}`
+    );
+    return postData;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getPost = async (id: number): Promise<Post> => {
   try {
     const postData = await api<Post>(`/posts/${id}`);
@@ -37,7 +50,7 @@ export const updatePost = async (id: number, data: Post): Promise<Post> => {
   }
 };
 
-export const deletePost = async (id: number) => {
+export const removePost = async (id: number) => {
   try {
     const responseData = await api<Post>(`/posts/${id}`, "DELETE");
     return responseData;

@@ -49,7 +49,7 @@ export const NewsContent = ({
         />
       </div>
       <p className="font-montserrat text-xs xl:text-xm text-neutral-600">
-        {formatDate(selectedNews.createdAt)}
+        {formatDate(selectedNews.createdAt, true)}
       </p>
       <p
         className="my-5 font-montserrat text-lg xl:text-2xl text-neutral-900"
