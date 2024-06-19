@@ -29,7 +29,7 @@ const AboutUsPage = () => {
           <AboutUsIntroText />
         </div>
       </div>
-      <div className="flex items-center">
+      <div className="flex justify-center mt-4">
         {data && data.length > 0 ? (
           <Box title={"Quem somos"}>
             <SliderComponent subjects={data} />
