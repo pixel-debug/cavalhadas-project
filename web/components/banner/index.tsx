@@ -20,11 +20,10 @@ export const Banner = ({
 
   return (
     <div className="h-screen">
-      {image && (
-        <div className="bg-black opacity-50 absolute inset-0 z-0">
-          <CustomImage src={image} alt={""} objectFit="cover" />
-        </div>
-      )}
+      <div className="bg-black opacity-50 absolute inset-0 z-0">
+        <CustomImage src={image} alt={""} objectFit="cover" />
+      </div>
+
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
         <BannerText title={title} text={subtitle} isMainPage={isMainPage} />
         {hasButton && (
