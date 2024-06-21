@@ -1,4 +1,5 @@
 import { Button } from "@/components/common/button";
+import { NoContent } from "@/components/common/noContent";
 import { Donations } from "@/components/sponsorsPage/donations";
 import { Sponsors } from "@/components/sponsorsPage/sponsors";
 import { AdminContext } from "@/context/useAdminContext";
@@ -21,12 +22,28 @@ const SponsorsPage = () => {
   });
 
   return (
-    <div>
+    <>
       <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
         {PageTitles.SPONSORS}
       </p>
-      {data ? <Sponsors sponsors={data} /> : null}
-      <Donations />
+      <div className="flex flex-col items-center pt-5">
+        <div className="px-10">
+          <p className="font-montserrat text-neutral-900 text-base pb-20">
+            Somos muitos agradecidos à todos os nossos patrocinadores! Essas
+            pessoas incríveis que, além de nos apoiar e acreditar, colaboram
+            deixando viva nossa cultura!
+          </p>
+
+          {data ? (
+            <Sponsors sponsors={data} />
+          ) : (
+            <div className="flex justify-center mt-4">
+              <NoContent />
+            </div>
+          )}
+          <Donations />
+        </div>
+      </div>
       {admin ? (
         <div className="flex justify-center mt-4">
           <div className="xl:w-[40%] w-[30%]">
@@ -34,7 +51,7 @@ const SponsorsPage = () => {
           </div>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

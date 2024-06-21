@@ -28,7 +28,8 @@ export default function Home() {
   const news = data.slice(0, 3);
 
   return (
-    <div>
+    <>
+      <p className="text-black">aaoampaomapomaopma</p>
       <Banner title={title} subtitle={text} hasButton isMainPage />
       <div className="flex items-center justify-center">
         {news.length > 0 ? (
@@ -44,6 +45,6 @@ export default function Home() {
           <NoContent />
         )}
       </div>
-    </div>
+    </>
   );
 }
