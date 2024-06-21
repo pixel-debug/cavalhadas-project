@@ -5,6 +5,7 @@ import { CustomImage } from "../common/image";
 import { useRouter } from "next/router";
 import { PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
+import image from "../../assets/images/home.jpg";
 
 export const Banner = ({
   title,
@@ -13,9 +14,6 @@ export const Banner = ({
   isMainPage,
 }: BannerProps) => {
   const router = useRouter();
-  const image =
-    "https://www.ipatrimonio.org/wp-content/uploads/2018/11/ipatrimonio_Ouro-Preto-Cavalhada-_Foto-Ane-Souz-Fonte-Prefeitura-Municipal.jpg";
-
   const goToAboutUsPage = () => {
     router.push(usedRouters(PagesRouters.ABOUT_US_PAGE));
   };
