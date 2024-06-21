@@ -14,15 +14,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <AdminProvider> */}
-      <div className="flex flex-col min-h-screen">
-        {!isLoginPage && <Header />}
-        <Body>
-          <Component {...pageProps} />
-        </Body>
-        {!isLoginPage && <Footer />}
-      </div>
-      {/* </AdminProvider> */}
+      <AdminProvider>
+        <div className="flex flex-col min-h-screen">
+          {!isLoginPage && <Header />}
+          <Body>
+            <Component {...pageProps} />
+          </Body>
+          {!isLoginPage && <Footer />}
+        </div>
+      </AdminProvider>
     </QueryClientProvider>
   );
 }

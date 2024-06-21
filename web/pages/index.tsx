@@ -29,7 +29,6 @@ export default function Home() {
 
   return (
     <>
-      <p className="text-black">aaoampaomapomaopma</p>
       <Banner title={title} subtitle={text} hasButton isMainPage />
       <div className="flex items-center justify-center">
         {news.length > 0 ? (
