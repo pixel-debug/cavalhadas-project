@@ -5,11 +5,11 @@ import { CustomImage } from "../common/image";
 import { useRouter } from "next/router";
 import { PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
+import image from "../../assets/images/home.jpg";
 
 export const Banner = ({
   title,
   subtitle,
-  image,
   hasButton,
   isMainPage,
 }: BannerProps) => {

@@ -21,7 +21,7 @@ const SponsorsPage = () => {
   });
 
   return (
-    <>
+    <div>
       <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
         {PageTitles.SPONSORS}
       </p>
@@ -34,7 +34,7 @@ const SponsorsPage = () => {
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 

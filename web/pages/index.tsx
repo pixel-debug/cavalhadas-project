@@ -8,7 +8,6 @@ import { BannerMockedTitle, BannerMockedText } from "@/utils/texts";
 import { PagesRouters } from "@/types/enums";
 import { getPosts } from "@/external/api/postApi";
 import { useQuery } from "react-query";
-import image from "../assets/images/home.jpg";
 import { NoContent } from "@/components/common/noContent";
 
 export default function Home() {
@@ -29,14 +28,8 @@ export default function Home() {
   const news = data.slice(0, 3);
 
   return (
-    <>
-      <Banner
-        image={image}
-        title={title}
-        subtitle={text}
-        hasButton
-        isMainPage
-      />
+    <div>
+      <Banner title={title} subtitle={text} hasButton isMainPage />
       <div className="flex items-center justify-center">
         {news.length > 0 ? (
           <Box title={"Últimas noticias"}>
@@ -51,6 +44,6 @@ export default function Home() {
           <NoContent />
         )}
       </div>
-    </>
+    </div>
   );
 }

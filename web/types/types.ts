@@ -83,7 +83,6 @@ export type BannerImageProps = {
 };
 
 export type BannerProps = {
-  image: string | StaticImageData;
   title: string;
   subtitle: string;
   isMainPage?: boolean;
