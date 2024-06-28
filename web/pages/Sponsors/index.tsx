@@ -34,14 +34,13 @@ const SponsorsPage = () => {
             deixando viva nossa cultura!
           </p>
 
-          {data ? (
+          {data && data.length > 0 ? (
             <Sponsors sponsors={data} />
           ) : (
             <div className="flex justify-center mt-4">
               <NoContent />
             </div>
           )}
-          <Donations />
         </div>
       </div>
       {admin ? (
@@ -51,6 +50,7 @@ const SponsorsPage = () => {
           </div>
         </div>
       ) : null}
+      <Donations />
     </>
   );
 };
