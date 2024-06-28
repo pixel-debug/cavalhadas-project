@@ -1,4 +1,5 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsArray, IsOptional, IsString } from "class-validator";
+import { PDFDto } from "../../../pdf/dto/PDF.dto";
 
 export class UpdatePostRequest {
   @IsString()
@@ -12,4 +13,9 @@ export class UpdatePostRequest {
   @IsString()
   @IsOptional()
   content: string;
+
+  @IsArray()
+  @IsString()
+  @IsOptional()
+  pdf: PDFDto[];
 }

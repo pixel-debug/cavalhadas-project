@@ -23,12 +23,24 @@ model Post {
   title     String
   content   String
   image     String
+  pdfs      PDF[]
   published Boolean   @default(false)
   authorId  Int
   author    Admin     @relation(fields: [authorId], references: [id])
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
   deleteAt  DateTime?
+}
+
+model PDF {
+  id           Int       @id @default(autoincrement())
+  postId       Int
+  fileName     String
+  downloadPath String
+  post         Post      @relation(fields: [postId], references: [id])
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @default(now())
+  deleteAt     DateTime?
 }
 
 model Member {

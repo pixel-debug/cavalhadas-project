@@ -8,6 +8,7 @@ export const InputField = ({
   register,
   error,
   type,
+  multiple,
 }: InputProps) => (
   <>
     <Input
@@ -16,6 +17,7 @@ export const InputField = ({
       id={id}
       type={type}
       placeholder={placeholder}
+      multiple={multiple}
     />
     {error && <p className="mt-2 text-sm text-red-600">{error.message}</p>}
   </>

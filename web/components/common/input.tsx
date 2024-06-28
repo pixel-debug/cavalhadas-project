@@ -7,6 +7,7 @@ export const Input = ({
   placeholder,
   type = "text",
   onChange,
+  multiple = false,
 }: InputProps) => {
   return (
     <div className="mb-4">
@@ -23,6 +24,7 @@ export const Input = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        multiple={multiple}
       />
     </div>
   );

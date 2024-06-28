@@ -16,10 +16,11 @@ export type Sponsor = {
 };
 
 export type PostType = {
+  id: number;
   title: string;
   content: string;
-  authorId: number;
   image: File | string;
+  pdf?: File[];
 };
 
 export type Post = {
@@ -29,6 +30,14 @@ export type Post = {
   authorId: number;
   image: File | string;
   createdAt: Date;
+  pdf?: PDF[];
+};
+
+export type PDF = {
+  id: number;
+  fileName: string;
+  downloadPath: string;
+  postId: number;
 };
 
 export type Member = {
@@ -64,6 +73,10 @@ export type ImageProps = {
   alt: string;
   objectFit?: string;
   rounded?: boolean;
+};
+
+export type UploadProps = {
+  register: UseFormRegisterReturn;
 };
 
 export type HeaderProps = {
@@ -157,6 +170,7 @@ export type InputProps = {
   type?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: FieldError;
+  multiple?: boolean;
 };
 
 export type CheckboxProps = {

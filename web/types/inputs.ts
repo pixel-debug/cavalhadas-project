@@ -51,6 +51,13 @@ const Inputs = {
       label: "Conteúdo",
       placeholder: "Escreva o corpo da postagem",
     },
+    {
+      type: "file",
+      id: "pdf",
+      name: "pdf",
+      label: "",
+      placeholder: "Escreva o corpo da postagem",
+    },
   ],
   sponsor: [
     {

@@ -55,7 +55,9 @@ const NewsPage = () => {
           </div>
         </>
       ) : (
-        <NoContent />
+        <div className="mt-10">
+          <NoContent />
+        </div>
       )}
 
       {admin && (
