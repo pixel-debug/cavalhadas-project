@@ -10,62 +10,54 @@ export const NewsContent = ({
   openImage,
   isAdmin,
 }: NewsContentProps) => {
+  const { id, title, content, image, createdAt } = selectedNews;
+
   const { handleSubmit, setValue } = useForm<Post>({
     defaultValues: {
-      title: selectedNews.title,
-      content: selectedNews.content,
+      title,
+      content,
     },
   });
 
-  const { mutate } = useMutation((postData: Post) => {
-    return updatePost(selectedNews.id, { ...postData });
-  });
+  const { mutate } = useMutation((postData: Post) => updatePost(id, postData));
 
   const onSubmit = (data: Post) => {
     mutate(data);
   };
 
-  const handleTitleChange = (event: React.FocusEvent<HTMLParagraphElement>) => {
-    if (isAdmin) {
-      setValue("title", event.target.textContent || "");
-    }
-  };
-
-  const handleContentChange = (
-    event: React.FocusEvent<HTMLParagraphElement>
+  const handleChange = (
+    event: React.FocusEvent<HTMLParagraphElement>,
+    field: keyof Post
   ) => {
     if (isAdmin) {
-      setValue("content", event.target.textContent || "");
+      const newValue = event.target.textContent || "";
+      setValue(field, newValue);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="h-[60vh] w-full" onClick={() => openImage(true)}>
-        <CustomImage
-          src={imageSrc(selectedNews?.image)}
-          alt=""
-          objectFit="cover"
-        />
+        <CustomImage src={imageSrc(image)} alt="" objectFit="cover" />
       </div>
       <p className="font-montserrat text-xs xl:text-xm text-neutral-600">
-        {formatDate(selectedNews.createdAt, true)}
+        {formatDate(createdAt, true)}
       </p>
       <p
         className="my-5 font-montserrat text-lg xl:text-2xl text-neutral-900"
         contentEditable={isAdmin ? "true" : "false"}
-        onBlur={handleTitleChange}
+        onBlur={(e) => handleChange(e, "title")}
         suppressContentEditableWarning={true}
       >
-        {selectedNews.title}
+        {title}
       </p>
       <p
         className="font-montserrat text-xm xl:text-md text-neutral-900"
         contentEditable={isAdmin ? "true" : "false"}
-        onBlur={handleContentChange}
+        onBlur={(e) => handleChange(e, "content")}
         suppressContentEditableWarning={true}
       >
-        {selectedNews.content}
+        {content}
       </p>
       {isAdmin && (
         <button
