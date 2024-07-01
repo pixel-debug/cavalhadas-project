@@ -143,7 +143,11 @@ export type SliderType = {
 
 export type SliderProps = {
   subjects: Member[];
-  itemAction?: (item: Member) => void;
+};
+
+export type SliderListProps = {
+  subjects: Member[];
+  itemAction: (item: Member) => void;
 };
 
 export type SliderItemProps = {

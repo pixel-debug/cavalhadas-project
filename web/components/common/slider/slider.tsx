@@ -1,9 +1,9 @@
-import { Member, SliderProps } from "@/types/types";
+import { Member, SliderListProps } from "@/types/types";
 import Slider from "react-slick";
 import { Item } from "./item";
 import { sliderSettings } from "@/utils/sliderSettings";
 
-export const SliderList = ({ subjects, itemAction }: SliderProps) => {
+export const SliderList = ({ subjects, itemAction }: SliderListProps) => {
   const settings = {
     ...sliderSettings,
     infinite: subjects.length > 3,
