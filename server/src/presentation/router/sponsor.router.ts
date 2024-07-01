@@ -24,7 +24,7 @@ export default function sponsorRouter(controller: SponsorController) {
     controller.get(req, res);
   });
 
-  router.delete("/:id", Authentication, (req: Request, res: Response) => {
+  router.delete("/", Authentication, (req: Request, res: Response) => {
     controller.delete(req, res);
   });
 

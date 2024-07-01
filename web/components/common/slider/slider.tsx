@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { Item } from "./item";
 import { sliderSettings } from "@/utils/sliderSettings";
 
-export const SliderList = ({ subjects }: SliderProps) => {
+export const SliderList = ({ subjects, itemAction }: SliderProps) => {
   const settings = {
     ...sliderSettings,
     infinite: subjects.length > 3,
@@ -13,7 +13,7 @@ export const SliderList = ({ subjects }: SliderProps) => {
     <div className="w-[100%] pb-10">
       <Slider {...settings} arrows={false}>
         {subjects.map((subject: Member, index: number) => (
-          <Item key={"admin-" + index} item={subject} />
+          <Item key={"admin-" + index} item={subject} itemAction={itemAction} />
         ))}
       </Slider>
     </div>

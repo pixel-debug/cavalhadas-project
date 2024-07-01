@@ -28,9 +28,9 @@ export const updateSponsor = async (id: number, data: Sponsor) => {
   }
 };
 
-export const deleteSponsor = async (id: number) => {
+export const deleteSponsor = async () => {
   try {
-    const responseData = await api<Sponsor>(`/sponsors/${id}`, "DELETE");
+    const responseData = await api<Sponsor>(`/sponsors`, "DELETE");
     return responseData;
   } catch (error) {
     throw error;

@@ -28,7 +28,7 @@ export class SponsorUseCase
   update(id: number, entity: UpdateSponsorRequest): Promise<void> {
     return this.sponsorRepository.update(id, entity);
   }
-  delete(id: number): Promise<void> {
-    return this.sponsorRepository.delete(id);
+  delete(): Promise<void> {
+    return this.sponsorRepository.delete();
   }
 }

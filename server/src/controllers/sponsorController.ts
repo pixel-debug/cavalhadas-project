@@ -60,8 +60,7 @@ export class SponsorController implements IController<SponsorResponse> {
   }
   async delete(req: Request, res: Response): Promise<void> {
     try {
-      const id = Number(req.params.id);
-      const sponsor = await this.sponsorUseCase.delete(id);
+      const sponsor = await this.sponsorUseCase.delete();
       res.status(HttpStatus.OK).json(sponsor);
     } catch (error) {
       console.error(error);
