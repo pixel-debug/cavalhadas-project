@@ -39,7 +39,6 @@ export const SliderComponent = ({ subjects }: SliderProps) => {
   ];
 
   const actions = (item: Member) => {
-    console.log(item.id);
     setModal({
       openModal: true,
       selected: item,
