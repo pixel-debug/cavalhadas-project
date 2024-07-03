@@ -1,4 +1,4 @@
-import { PDFDto } from "../../pdf/dto/PDF.dto";
+import { DocumentResponse } from "../../document/DocumentResponse.dto";
 import { CreatePostRequest } from "./request/CreatePostRequest.dto";
 
 export class PostResponse {
@@ -6,7 +6,7 @@ export class PostResponse {
   title: string;
   content: string;
   image: string;
-  pdf?: PDFDto[];
+  pdfs?: DocumentResponse[];
   published?: boolean;
   createdAt?: Date;
   updatedAt?: Date;

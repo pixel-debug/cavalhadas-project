@@ -2,10 +2,12 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
 import {
+  Control,
   FieldError,
   FieldValues,
   UseFormRegister,
   UseFormRegisterReturn,
+  UseFormSetValue,
 } from "react-hook-form";
 
 export type Sponsor = {
@@ -30,14 +32,12 @@ export type Post = {
   authorId: number;
   image: File | string;
   createdAt: Date;
-  pdf?: PDF[];
+  pdfs?: PDF[];
 };
 
 export type PDF = {
-  id: number;
   fileName: string;
   downloadPath: string;
-  postId: number;
 };
 
 export type Member = {
@@ -76,7 +76,7 @@ export type ImageProps = {
 };
 
 export type UploadProps = {
-  register: UseFormRegisterReturn;
+  setValue: UseFormSetValue<any>;
 };
 
 export type HeaderProps = {

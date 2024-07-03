@@ -32,12 +32,11 @@ export const WritePost = () => {
     if (data.pdf) {
       const downloadURLs: string[] = await createPDFsOnFirebase(data.pdf);
       const processedPDFs: PDF[] = data.pdf.map((file, index) => ({
-        id: index + 1,
         fileName: file.name,
         downloadPath: downloadURLs[index],
-        postId: post.id,
       }));
-      post.pdf = processedPDFs;
+
+      post.pdfs = processedPDFs;
     }
     mutate(post);
   };

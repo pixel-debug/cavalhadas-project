@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsString,
 } from "class-validator";
-import { PDFDto } from "../../../pdf/dto/PDF.dto";
+import { CreateDocumentRequest } from "../../../document/dto/CreateDocument.dto";
 
 export class CreatePostRequest {
   @IsString()
@@ -25,15 +25,14 @@ export class CreatePostRequest {
   content: string;
 
   @IsArray()
-  @IsString()
   @IsOptional()
-  pdf: PDFDto[];
+  pdfs?: CreateDocumentRequest[];
 
   constructor() {
     this.title = "";
+    this.content = "";
     this.image = "";
     this.authorId = 0;
-    this.content = "";
-    this.pdf = [];
+    this.pdfs = [];
   }
 }

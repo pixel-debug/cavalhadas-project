@@ -15,16 +15,17 @@ export const DynamicForm = <T extends FieldValues>({
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<T>();
-
-  const handleForm = async (data: T) => {
-    // onSubmit(data);
-    // reset();
-    console.log(data);
-  };
 
   const hasImageField = fields.some((field) => field.name === "image");
   const hasPdfField = fields.some((field) => field.name === "pdf");
+
+  const handleForm = async (data: T) => {
+    onSubmit(data);
+    reset();
+    console.log(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(handleForm)}>
@@ -61,14 +62,7 @@ export const DynamicForm = <T extends FieldValues>({
           {hasImageField && (
             <ImageUpload register={register("image" as Path<T>)} />
           )}
-          {hasPdfField && (
-            <PdfUploader
-              register={register("pdf" as Path<T>, {
-                required: false,
-                valueAsNumber: false,
-              })}
-            />
-          )}
+          {hasPdfField && <PdfUploader setValue={setValue} />}
         </div>
       </div>
       <div className="flex justify-end mt-4">

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Input } from "../input";
 import { UploadProps } from "@/types/types";
 
-export const PdfUploader = ({ register }: UploadProps) => {
+export const PdfUploader = ({ setValue }: UploadProps) => {
   const [pdfs, setPdfs] = useState<File[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedPdfs: File[] = Array.from(e.target.files);
       setPdfs((prevPdfs) => [...prevPdfs, ...selectedPdfs]);
+      setValue("pdf", [...pdfs, ...selectedPdfs]);
     }
   };
 
@@ -24,12 +24,10 @@ export const PdfUploader = ({ register }: UploadProps) => {
 
   return (
     <div>
-      <Input
+      <input
         key="pdf"
-        label="PDF Upload"
         id="pdf"
         placeholder="Upload your PDF"
-        register={register}
         multiple
         type="file"
         onChange={handleChange}
