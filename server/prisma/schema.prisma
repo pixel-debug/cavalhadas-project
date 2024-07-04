@@ -19,16 +19,28 @@ model Admin {
 }
 
 model Post {
-  id        Int       @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   title     String
   content   String
   image     String
-  published Boolean   @default(false)
+  pdfs      Document[]
+  published Boolean    @default(false)
   authorId  Int
-  author    Admin     @relation(fields: [authorId], references: [id])
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @default(now())
+  author    Admin      @relation(fields: [authorId], references: [id])
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @default(now())
   deleteAt  DateTime?
+}
+
+model Document {
+  id           Int       @id @default(autoincrement())
+  fileName     String
+  downloadPath String
+  postId       Int
+  post         Post      @relation(fields: [postId], references: [id])
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? @default(now())
+  deleteAt     DateTime?
 }
 
 model Member {

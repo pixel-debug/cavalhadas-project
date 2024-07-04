@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import {
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from "class-validator";
+import { CreateDocumentRequest } from "../../../document/dto/CreateDocument.dto";
 
 export class CreatePostRequest {
   @IsString()
@@ -17,10 +24,15 @@ export class CreatePostRequest {
   @IsNotEmpty()
   content: string;
 
+  @IsArray()
+  @IsOptional()
+  pdfs?: CreateDocumentRequest[];
+
   constructor() {
     this.title = "";
+    this.content = "";
     this.image = "";
     this.authorId = 0;
-    this.content = "";
+    this.pdfs = [];
   }
 }

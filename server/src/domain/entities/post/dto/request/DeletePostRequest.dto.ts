@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNumber, IsNotEmpty } from "class-validator";
 
 export class DeletePostRequest {
   @IsNumber()

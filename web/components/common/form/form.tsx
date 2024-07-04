@@ -1,11 +1,10 @@
 import { Button } from "@/components/common/button";
 import { useForm, FieldValues, Path, FieldError } from "react-hook-form";
 import { InputField } from "./inputField";
-import { Checkbox } from "../checkbox";
 import { ImageUpload } from "./imagePreview";
-import { TextArea } from "../textArea";
 import { DynamicFormProps } from "@/types/types";
-import { Toggle } from "./toogle";
+import { fieldComponents } from "@/types/formFields";
+import { PdfUploader } from "./pdfUploader";
 
 export const DynamicForm = <T extends FieldValues>({
   fields,
@@ -16,11 +15,16 @@ export const DynamicForm = <T extends FieldValues>({
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<T>();
+
+  const hasImageField = fields.some((field) => field.name === "image");
+  const hasPdfField = fields.some((field) => field.name === "pdf");
 
   const handleForm = async (data: T) => {
     onSubmit(data);
     reset();
+    console.log(data);
   };
 
   return (
@@ -31,64 +35,34 @@ export const DynamicForm = <T extends FieldValues>({
             const error = errors[field.name as keyof T] as
               | FieldError
               | undefined;
+            const FieldComponent =
+              fieldComponents[field.type as keyof typeof fieldComponents];
 
-            switch (field.type) {
-              case "input":
-              case "date":
-              case "number":
-                return (
-                  <InputField
-                    key={field.id}
-                    label={field.label}
-                    id={field.id}
-                    placeholder={field.placeholder}
-                    register={register(field.name as Path<T>, {
-                      required: field.required,
-                      valueAsNumber: field.type === "number" ? true : false,
-                    })}
-                    type={field.type}
-                    error={error}
-                  />
-                );
-              case "textarea":
-                return (
-                  <TextArea
-                    key={field.id}
-                    label={field.label}
-                    id={field.id}
-                    register={register(field.name as Path<T>, {
-                      required: field.required,
-                    })}
-                    placeholder={field.placeholder}
-                  />
-                );
-              case "checkbox":
-                return (
-                  <Checkbox
-                    key={field.id}
-                    label={field.label}
-                    id={field.id}
-                    register={register(field.name as Path<T>)}
-                  />
-                );
-              case "toogle":
-                return (
-                  <Toggle
-                    key={field.id}
-                    label={field.label}
-                    id={field.id}
-                    register={register(field.name as Path<T>)}
-                  />
-                );
-              default:
-                return null;
+            if (!FieldComponent) {
+              return null;
             }
+
+            return (
+              <FieldComponent
+                key={field.id}
+                label={field.label}
+                id={field.id}
+                placeholder={field.placeholder}
+                register={register(field.name as Path<T>, {
+                  required: field.required,
+                  valueAsNumber: field.type === "number" ? true : false,
+                })}
+                type={field.type}
+                error={error}
+              />
+            );
           })}
         </div>
         <div className="xl:w-[40%] w-full xl:pl-0 pl-10">
-          {fields.some((field) => field.type === "image") && (
+          {hasImageField && (
             <ImageUpload register={register("image" as Path<T>)} />
           )}
+          {hasPdfField && <PdfUploader setValue={setValue} />}
         </div>
       </div>
       <div className="flex justify-end mt-4">

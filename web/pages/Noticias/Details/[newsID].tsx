@@ -17,7 +17,7 @@ const NewsDetails = () => {
   const { admin } = useContext(AdminContext);
 
   const { data } = useQuery(["posts", newsID], () => getPost(Number(newsID)));
-
+  console.log(data);
   return (
     data && (
       <div className="overflow-auto pt-10">

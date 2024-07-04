@@ -2,10 +2,12 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
 import {
+  Control,
   FieldError,
   FieldValues,
   UseFormRegister,
   UseFormRegisterReturn,
+  UseFormSetValue,
 } from "react-hook-form";
 
 export type Sponsor = {
@@ -16,10 +18,11 @@ export type Sponsor = {
 };
 
 export type PostType = {
+  id: number;
   title: string;
   content: string;
-  authorId: number;
   image: File | string;
+  pdf?: File[];
 };
 
 export type Post = {
@@ -29,6 +32,12 @@ export type Post = {
   authorId: number;
   image: File | string;
   createdAt: Date;
+  pdfs?: PDF[];
+};
+
+export type PDF = {
+  fileName: string;
+  downloadPath: string;
 };
 
 export type Member = {
@@ -64,6 +73,10 @@ export type ImageProps = {
   alt: string;
   objectFit?: string;
   rounded?: boolean;
+};
+
+export type UploadProps = {
+  setValue: UseFormSetValue<any>;
 };
 
 export type HeaderProps = {
@@ -163,6 +176,7 @@ export type InputProps = {
   type?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: FieldError;
+  multiple?: boolean;
 };
 
 export type CheckboxProps = {
