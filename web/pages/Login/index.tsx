@@ -1,6 +1,6 @@
 import { Box } from "@/components/common/box";
 import { Button } from "@/components/common/button";
-import { CustomImage } from "@/components/common/image";
+import { IoIosArrowDropleft } from "react-icons/io";
 import { Input } from "@/components/common/input";
 import { AdminContext } from "@/context/useAdminContext";
 import { usedRouters } from "@/types/routers";
@@ -20,6 +20,10 @@ const Login = () => {
   const { handleLogin } = useContext(AdminContext);
   const router = useRouter();
 
+  const goBack = () => {
+    router.back();
+  };
+
   const handleForm = async (data: Admin) => {
     try {
       await handleLogin(data);
@@ -31,12 +35,13 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center min-h-screen p-10">
-      <div className="relative h-[60vh] xl:w-[30%] w-[45%] opacity-50">
-        <CustomImage src={image} alt={""} />
-      </div>
+    <>
+      <IoIosArrowDropleft
+        className="absolute top-10 left-10 h-10 w-10"
+        onClick={goBack}
+      />
 
-      <div className="w-[45%] h-[60vh]">
+      <div className="xl:w-[45%] xl:h-[60vh] h-[40vh] w-[60%]">
         <Box title="Login em cavalhadas">
           <form onSubmit={handleSubmit(handleForm)}>
             <Input
@@ -58,7 +63,7 @@ const Login = () => {
           </form>
         </Box>
       </div>
-    </div>
+    </>
   );
 };
 

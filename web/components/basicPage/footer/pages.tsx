@@ -1,26 +1,39 @@
+import { PagesRouters } from "@/types/enums";
+import { usedRouters } from "@/types/routers";
+import Link from "next/link";
+
 export const Pages = () => {
   return (
     <div className="mb-4 font-montserrat xl:text-md text-xs text-neutral-900 mb-2">
       <ul className="list-none">
         <li className="mb-2">
-          <a href="/home" className="hover:underline">
+          <Link href="/" className="hover:underline">
             Home
-          </a>
+          </Link>
         </li>
         <li className="mb-2">
-          <a href="/noticias" className="hover:underline">
+          <Link
+            href={usedRouters(PagesRouters.NEWS_PAGE)}
+            className="hover:underline"
+          >
             Notícias
-          </a>
+          </Link>
         </li>
         <li className="mb-2">
-          <a href="/quem-somos" className="hover:underline">
+          <Link
+            href={usedRouters(PagesRouters.ABOUT_US_PAGE)}
+            className="hover:underline"
+          >
             Quem Somos
-          </a>
+          </Link>
         </li>
         <li className="mb-2">
-          <a href="/patrocinadores" className="hover:underline">
+          <Link
+            href={usedRouters(PagesRouters.SPONSORS_PAGE)}
+            className="hover:underline"
+          >
             Patrocinadores
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

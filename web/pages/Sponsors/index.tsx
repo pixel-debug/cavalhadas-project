@@ -37,9 +37,7 @@ const SponsorsPage = () => {
           {data && data.length > 0 ? (
             <Sponsors sponsors={data} />
           ) : (
-            <div className="flex justify-center mt-4">
-              <NoContent />
-            </div>
+            <NoContent />
           )}
         </div>
       </div>

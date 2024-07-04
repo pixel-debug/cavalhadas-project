@@ -36,6 +36,6 @@ export class PostUseCase
     return await this.postRepository.update(id, entity);
   }
   async delete(id: number): Promise<void> {
-    return await this.postRepository.delete(id);
+    return await this.postRepository.physicalDelete(id);
   }
 }

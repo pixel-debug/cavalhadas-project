@@ -8,6 +8,7 @@ export class PostResponse {
   image: string;
   pdfs?: DocumentResponse[];
   published?: boolean;
+  deleted?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;

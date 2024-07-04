@@ -61,10 +61,8 @@ const NewsPage = () => {
       )}
 
       {admin && (
-        <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Criar post"} action={navigation} />
-          </div>
+        <div className="flex  w-[20%] justify-center mt-4">
+          <Button text={"Criar post"} action={navigation} />
         </div>
       )}
     </>

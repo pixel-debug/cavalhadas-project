@@ -10,7 +10,7 @@ export const Donations = () => {
     <div className="py-10 flex items-center">
       <Box>
         <div className="p-10 flex xl:flex-row flex-col items-center">
-          <p className="xl:pb-0 pb-10 w-[80%] text-neutral-50 font-montserrat text-2xl">
+          <p className="xl:pb-0 pb-10 w-[80%] text-neutral-50 font-montserrat xl:text-2xl text-xl2">
             Para mais informações ou doações ligue:
           </p>
           <Button text={"31 98694-5696"} action={startWhatsapp} />
