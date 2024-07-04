@@ -23,6 +23,9 @@ export class PostRepository
   async get(id: number): Promise<PostResponse | null> {
     return this.prisma.post.findUnique({
       where: { id },
+      include: {
+        pdfs: true,
+      },
     });
   }
 
