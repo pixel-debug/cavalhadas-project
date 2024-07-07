@@ -31,13 +31,14 @@ const NewsPage = () => {
       },
     }
   );
+  const filteredData = data ? data.filter((post) => !post.deleted) : [];
 
   return (
     <>
-      {data && data.length > 0 ? (
+      {filteredData.length > 0 ? (
         <>
           <div className="flex p-10">
-            <CardDeck news={data} />
+            <CardDeck news={filteredData} />
           </div>
           <div className="flex justify-center mt-4">
             <button

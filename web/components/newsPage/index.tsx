@@ -1,16 +1,17 @@
-import { NewsContentProps, Post } from "@/types/types";
+import { NewsContentProps, PDF, Post } from "@/types/types";
 import { CustomImage } from "../common/image";
 import { useForm } from "react-hook-form";
 import { formatDate, imageSrc } from "@/utils/formatters";
 import { useMutation } from "react-query";
 import { updatePost } from "@/external/api/postApi";
+import { Button } from "../common/button";
 
 export const NewsContent = ({
   selectedNews,
   openImage,
   isAdmin,
 }: NewsContentProps) => {
-  const { id, title, content, image, createdAt } = selectedNews;
+  const { id, title, content, image, createdAt, pdfs } = selectedNews;
 
   const { handleSubmit, setValue } = useForm<Post>({
     defaultValues: {
@@ -23,6 +24,15 @@ export const NewsContent = ({
 
   const onSubmit = (data: Post) => {
     mutate(data);
+  };
+
+  const downloadDocument = (pdf: PDF) => {
+    const link = document.createElement("a");
+    link.href = pdf.downloadPath;
+    link.download = pdf.downloadPath.split("/").pop() || "downloaded_file";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleChange = (
@@ -67,6 +77,18 @@ export const NewsContent = ({
           Salvar edição
         </button>
       )}
+      <div className="flex flex-row justify-center mt-10">
+        {pdfs && pdfs.length > 0
+          ? pdfs.map((pdf, index) => (
+              <div className="xl:w-[40%] mr-5" key={index}>
+                <Button
+                  text={pdf.fileName}
+                  action={() => downloadDocument(pdf)}
+                />
+              </div>
+            ))
+          : null}
+      </div>
     </form>
   );
 };

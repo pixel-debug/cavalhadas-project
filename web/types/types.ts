@@ -33,6 +33,7 @@ export type Post = {
   image: File | string;
   createdAt: Date;
   pdfs?: PDF[];
+  deleted?: boolean;
 };
 
 export type PDF = {

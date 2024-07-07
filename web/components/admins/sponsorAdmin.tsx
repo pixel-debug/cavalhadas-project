@@ -4,8 +4,12 @@ import { getInput } from "@/types/inputs";
 import { useMutation } from "react-query";
 import { createSponsor } from "@/external/api/sponsorApi";
 import { Form } from "../common/form";
+import { IoIosArrowDropleft } from "react-icons/io";
+import { useRouter } from "next/router";
 
 export const AddSponsor = () => {
+  const router = useRouter();
+
   const { mutate } = useMutation(createSponsor, {
     onSuccess: (data) => {
       const message = "success";
@@ -25,11 +29,21 @@ export const AddSponsor = () => {
     { type: "image", id: "image", name: "image", label: "Imagem" },
   ];
 
+  const goBack = () => {
+    router.back();
+  };
+
   return (
-    <div className="mt-10 flex items-center">
-      <Box title="Preencha as informações do patrocinador">
-        <Form<Sponsor> fields={sponsorFormFields} onSubmit={handleSubmit} />
-      </Box>
-    </div>
+    <>
+      <IoIosArrowDropleft
+        className="absolute top-20 left-10 h-10 w-10"
+        onClick={goBack}
+      />
+      <div className="mt-10 flex items-center">
+        <Box title="Preencha as informações do patrocinador">
+          <Form<Sponsor> fields={sponsorFormFields} onSubmit={handleSubmit} />
+        </Box>
+      </div>
+    </>
   );
 };

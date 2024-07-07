@@ -40,9 +40,7 @@ const AboutUsPage = () => {
       </div>
       {admin ? (
         <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Adicionar membro"} action={navigation} />
-          </div>
+          <Button text={"Adicionar membro"} action={navigation} />
         </div>
       ) : null}
     </>

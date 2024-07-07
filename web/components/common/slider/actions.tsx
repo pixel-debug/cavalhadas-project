@@ -36,12 +36,12 @@ export const ItemAction = ({ item, onClose }: ItemActionProps) => {
   };
 
   const handleDelete = async () => {
-    const result = await deleteImageFromFirebase(item.image as string);
-    if (result) {
-      await removeMember(item.id);
-      alert("Membro editado com sucesso");
-      onClose();
-    }
+    // const result = await deleteImageFromFirebase(item.image as string);
+    // if (result) {
+    await removeMember(item.id);
+    alert("Membro deletado com sucesso");
+    onClose();
+    // }
   };
 
   const handleChange = (

@@ -10,15 +10,15 @@ export const Sponsors = ({ sponsors }: SponsorListProps) => {
   const { admin } = useContext(AdminContext);
 
   const handleDelete = async () => {
-    const deleteResults = await Promise.all(
-      sponsors.map(async (item: any) => {
-        return await deleteImageFromFirebase(item.image as string);
-      })
-    );
-    if (deleteResults) {
-      await deleteSponsor();
-      alert("Patrocinadores deletados com sucesso");
-    }
+    // const deleteResults = await Promise.all(
+    //   sponsors.map(async (item: any) => {
+    //     return await deleteImageFromFirebase(item.image as string);
+    //   })
+    // );
+    // if (deleteResults) {
+    await deleteSponsor();
+    alert("Patrocinadores deletados com sucesso");
+    // }
   };
   return (
     <>

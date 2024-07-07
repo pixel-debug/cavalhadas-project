@@ -43,9 +43,7 @@ const SponsorsPage = () => {
       </div>
       {admin ? (
         <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Gerenciar patrocinador"} action={navigation} />
-          </div>
+          <Button text={"Gerenciar patrocinador"} action={navigation} />
         </div>
       ) : null}
       <Donations />

@@ -20,7 +20,7 @@ const NewsDetails = () => {
   console.log(data);
   return (
     data && (
-      <div className="overflow-auto pt-10">
+      <div className="overflow-auto pt-10 w-full h-full">
         <div className="flex items-center">
           <Box title="">
             <NewsContent
