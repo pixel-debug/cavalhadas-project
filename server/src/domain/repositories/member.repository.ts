@@ -41,6 +41,14 @@ export class MemberRepository
     });
   }
   async delete(id: number): Promise<void> {
+    await this.prisma.member.update({
+      where: { id },
+      data: {
+        deleted: true,
+      },
+    });
+  }
+  async phisicalDelete(id: number): Promise<void> {
     await this.prisma.member.delete({
       where: { id },
     });

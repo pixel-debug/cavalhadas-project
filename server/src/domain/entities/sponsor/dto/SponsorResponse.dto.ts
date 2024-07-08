@@ -5,6 +5,7 @@ export class SponsorResponse {
   name: string;
   image: string;
   sponsorship: number;
+  deleted?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;

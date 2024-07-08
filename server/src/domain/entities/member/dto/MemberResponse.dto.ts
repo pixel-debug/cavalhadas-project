@@ -8,6 +8,7 @@ export class MemberResponse {
   memberSince: Date;
   isAdm: boolean;
   isMale: boolean;
+  deleted?: boolean;
   published?: boolean;
   createdAt?: Date;
   updatedAt?: Date;

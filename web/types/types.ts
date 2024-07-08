@@ -15,6 +15,7 @@ export type Sponsor = {
   name: string;
   image: File | string;
   sponsorship: number;
+  deleted?: boolean;
 };
 
 export type PostType = {
@@ -49,6 +50,7 @@ export type Member = {
   memberSince: Date;
   isAdm: boolean;
   isMale: boolean;
+  deleted?: boolean;
 };
 
 export type Admin = {

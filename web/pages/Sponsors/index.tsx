@@ -20,6 +20,7 @@ const SponsorsPage = () => {
     queryKey: ["sponsor"],
     queryFn: getSponsors,
   });
+  const filteredData = data ? data.filter((sponsor) => !sponsor.deleted) : [];
 
   return (
     <>
@@ -34,8 +35,8 @@ const SponsorsPage = () => {
             deixando viva nossa cultura!
           </p>
 
-          {data && data.length > 0 ? (
-            <Sponsors sponsors={data} />
+          {filteredData && filteredData.length > 0 ? (
+            <Sponsors sponsors={filteredData} />
           ) : (
             <NoContent />
           )}

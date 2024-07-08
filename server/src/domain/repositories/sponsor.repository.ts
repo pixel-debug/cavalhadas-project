@@ -39,6 +39,14 @@ export class SponsorRepository
     });
   }
   async delete(): Promise<void> {
+    await this.prisma.sponsor.updateMany({
+      data: {
+        deleted: true,
+      },
+    });
+  }
+
+  async physicalDelete(id: number): Promise<void> {
     await this.prisma.sponsor.deleteMany({});
   }
 }

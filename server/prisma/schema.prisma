@@ -52,6 +52,7 @@ model Member {
   memberSince DateTime  @default(now())
   isAdm       Boolean
   isMale      Boolean
+  deleted     Boolean   @default(false)
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @default(now())
   deleteAt    DateTime?
@@ -62,6 +63,7 @@ model Sponsor {
   name        String
   image       String
   sponsorship Int
+  deleted     Boolean   @default(false)
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @default(now())
   deleteAt    DateTime?
