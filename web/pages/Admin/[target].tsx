@@ -36,9 +36,7 @@ const AdminTarget = () => {
         )
       ) : (
         <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Entre"} action={login} />
-          </div>
+          <Button text={"Entre"} action={login} />
         </div>
       )}
     </>

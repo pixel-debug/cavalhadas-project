@@ -15,6 +15,7 @@ export type Sponsor = {
   name: string;
   image: File | string;
   sponsorship: number;
+  deleted?: boolean;
 };
 
 export type PostType = {
@@ -33,6 +34,7 @@ export type Post = {
   image: File | string;
   createdAt: Date;
   pdfs?: PDF[];
+  deleted?: boolean;
 };
 
 export type PDF = {
@@ -48,6 +50,7 @@ export type Member = {
   memberSince: Date;
   isAdm: boolean;
   isMale: boolean;
+  deleted?: boolean;
 };
 
 export type Admin = {
@@ -217,4 +220,10 @@ export type SponsorListProps = {
 
 export type ComponentMap = {
   [key: string]: () => JSX.Element;
+};
+
+export type PaginationComponent = {
+  pageNumber: number;
+  setPageNumber: (pageNumber: number) => void;
+  hasMore: boolean;
 };

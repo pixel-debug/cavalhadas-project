@@ -7,13 +7,16 @@ import { Form } from "@/components/common/form";
 import { useContext } from "react";
 import { AdminContext } from "@/context/useAdminContext";
 import { createPDFsOnFirebase } from "@/external/firebase/firebasePDF";
+import { useRouter } from "next/router";
 
 export const WritePost = () => {
+  const router = useRouter();
   const { admin } = useContext(AdminContext);
   const { mutate } = useMutation(createPost, {
     onSuccess: (data) => {
       const message = "success";
       alert(message);
+      router.back();
     },
     onError: () => {
       alert("there was an error");

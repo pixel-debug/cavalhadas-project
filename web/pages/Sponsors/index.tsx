@@ -20,6 +20,7 @@ const SponsorsPage = () => {
     queryKey: ["sponsor"],
     queryFn: getSponsors,
   });
+  const filteredData = data ? data.filter((sponsor) => !sponsor.deleted) : [];
 
   return (
     <>
@@ -34,20 +35,16 @@ const SponsorsPage = () => {
             deixando viva nossa cultura!
           </p>
 
-          {data && data.length > 0 ? (
-            <Sponsors sponsors={data} />
+          {filteredData && filteredData.length > 0 ? (
+            <Sponsors sponsors={filteredData} />
           ) : (
-            <div className="flex justify-center mt-4">
-              <NoContent />
-            </div>
+            <NoContent />
           )}
         </div>
       </div>
       {admin ? (
         <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Gerenciar patrocinador"} action={navigation} />
-          </div>
+          <Button text={"Gerenciar patrocinador"} action={navigation} />
         </div>
       ) : null}
       <Donations />

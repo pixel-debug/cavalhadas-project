@@ -18,6 +18,7 @@ const AboutUsPage = () => {
   };
   const { admin } = useContext(AdminContext);
   const { data } = useQuery(["member"], getMembers);
+  const filteredData = data ? data.filter((member) => !member.deleted) : [];
 
   return (
     <>
@@ -30,9 +31,9 @@ const AboutUsPage = () => {
         </div>
       </div>
       <div className="flex justify-center mt-4">
-        {data && data.length > 0 ? (
+        {filteredData && filteredData.length > 0 ? (
           <Box title={"Quem somos"}>
-            <SliderComponent subjects={data} />
+            <SliderComponent subjects={filteredData} />
           </Box>
         ) : (
           <NoContent />
@@ -40,9 +41,7 @@ const AboutUsPage = () => {
       </div>
       {admin ? (
         <div className="flex justify-center mt-4">
-          <div className="xl:w-[40%] w-[30%]">
-            <Button text={"Adicionar membro"} action={navigation} />
-          </div>
+          <Button text={"Adicionar membro"} action={navigation} />
         </div>
       ) : null}
     </>

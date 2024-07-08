@@ -15,11 +15,11 @@ export const CardDeck = ({ news }: DeckCardProps) => {
   };
 
   const deletePost = async (post: Post) => {
-    const result = await deleteImageFromFirebase(post.image as string);
-    if (result) {
-      await removePost(post.id);
-      setNewsState(newsState.filter((item) => item.id !== post.id));
-    }
+    // const result = await deleteImageFromFirebase(post.image as string);
+    // if (result) {
+    await removePost(post.id);
+    setNewsState(newsState.filter((item) => item.id !== post.id));
+    // }
   };
 
   return (

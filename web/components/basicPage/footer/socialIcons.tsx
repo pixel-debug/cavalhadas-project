@@ -7,7 +7,7 @@ export const SocialIcons = () => {
       <p className="font-montserrat xl:text-md text-xs text-neutral-900 mb-2">
         Redes Sociais
       </p>
-      <div className="flex flex-col xl:flex-row gap-4">
+      <div className="flex flex-row gap-4">
         <a
           href="https://facebook.com"
           target="_blank"

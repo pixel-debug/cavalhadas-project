@@ -1,6 +1,7 @@
 import { Input } from "@/components/common/input";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { useState } from "react";
+import Image from "next/image";
 
 interface ImageUploadProps {
   register: UseFormRegisterReturn;
@@ -25,7 +26,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ register }) => {
         type="file"
         onChange={handleChange}
       />
-      {imagePreview && <img src={imagePreview} alt="Image Preview" />}
+      {imagePreview && <Image src={imagePreview} alt="Image Preview" />}
     </div>
   );
 };

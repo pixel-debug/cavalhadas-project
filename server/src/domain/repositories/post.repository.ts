@@ -69,7 +69,7 @@ export class PostRepository
   }
 
   async update(id: number, entity: UpdatePostRequest): Promise<void> {
-    const updatedPost = await this.prisma.post.update({
+    await this.prisma.post.update({
       where: { id },
       data: entity,
       include: {
@@ -79,6 +79,15 @@ export class PostRepository
   }
 
   async delete(id: number): Promise<void> {
+    await this.prisma.post.update({
+      where: { id },
+      data: {
+        deleted: true,
+      },
+    });
+  }
+
+  async physicalDelete(id: number): Promise<void> {
     await this.prisma.post.delete({
       where: { id },
     });

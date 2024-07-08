@@ -26,6 +26,7 @@ model Post {
   pdfs      Document[]
   published Boolean    @default(false)
   authorId  Int
+  deleted   Boolean    @default(false)
   author    Admin      @relation(fields: [authorId], references: [id])
   createdAt DateTime?  @default(now())
   updatedAt DateTime?  @default(now())
@@ -37,7 +38,7 @@ model Document {
   fileName     String
   downloadPath String
   postId       Int
-  post         Post      @relation(fields: [postId], references: [id])
+  post         Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @default(now())
   deleteAt     DateTime?
@@ -51,6 +52,7 @@ model Member {
   memberSince DateTime  @default(now())
   isAdm       Boolean
   isMale      Boolean
+  deleted     Boolean   @default(false)
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @default(now())
   deleteAt    DateTime?
@@ -61,6 +63,7 @@ model Sponsor {
   name        String
   image       String
   sponsorship Int
+  deleted     Boolean   @default(false)
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @default(now())
   deleteAt    DateTime?
