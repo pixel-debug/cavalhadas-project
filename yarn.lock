@@ -6765,6 +6765,7 @@ serve-static@1.15.0:
     cors "^2.8.5"
     firebase-admin "^12.1.1"
     jsonwebtoken "^9.0.2"
+    reflect-metadata "^0.2.2"
     ts-node-dev "^2.0.0"
 
 set-blocking@^2.0.0:
