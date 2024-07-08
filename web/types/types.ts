@@ -219,3 +219,9 @@ export type SponsorListProps = {
 export type ComponentMap = {
   [key: string]: () => JSX.Element;
 };
+
+export type PaginationComponent = {
+  pageNumber: number;
+  setPageNumber: (pageNumber: number) => void;
+  hasMore: boolean;
+};

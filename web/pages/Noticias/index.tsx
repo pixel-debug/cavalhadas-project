@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import { IoMdArrowDropright, IoMdArrowDropleft } from "react-icons/io";
 import { NoContent } from "@/components/common/noContent";
+import { PaginationButtons } from "../../components/newsPage/paginationButtons";
 
 const NewsPage = () => {
   const router = useRouter();
@@ -40,20 +41,11 @@ const NewsPage = () => {
           <div className="flex p-10">
             <CardDeck news={filteredData} />
           </div>
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={() => setPageNumber(pageNumber - 1)}
-              disabled={pageNumber === 1}
-            >
-              <IoMdArrowDropleft />
-            </button>
-            <button
-              onClick={() => setPageNumber(pageNumber + 1)}
-              disabled={!hasMore}
-            >
-              <IoMdArrowDropright />
-            </button>
-          </div>
+          <PaginationButtons
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            hasMore
+          />
         </>
       ) : (
         <div className="mt-10">
