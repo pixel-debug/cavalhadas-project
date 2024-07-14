@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "vercel-build": " npx prisma migrate deploy"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
