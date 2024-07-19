@@ -1,6 +1,5 @@
-import { Input } from "@/components/common/input";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 
 interface ImageUploadProps {
@@ -10,6 +9,12 @@ interface ImageUploadProps {
 export const ImageUpload: React.FC<ImageUploadProps> = ({ register }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    hiddenFileInput.current?.click();
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImagePreview(URL.createObjectURL(e.target.files[0]));
@@ -17,16 +22,32 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ register }) => {
   };
 
   return (
-    <div>
-      <Input
-        label="Imagem"
+    <div className="w-full">
+      <input
         id="image"
-        register={register}
-        placeholder="coloque uma imagem ..."
         type="file"
+        {...register}
         onChange={handleChange}
+        ref={hiddenFileInput}
+        style={{ display: "none" }}
       />
-      {imagePreview && <Image src={imagePreview} alt="Image Preview" />}
+      <button
+        className="bg-blue-900 rounded p-2 w-full mb-5"
+        type="button"
+        onClick={handleClick}
+      >
+        Imagem
+      </button>
+      {imagePreview && (
+        <div className="flex justify-center">
+          <Image
+            src={imagePreview}
+            alt="Image Preview"
+            width={200}
+            height={200}
+          />
+        </div>
+      )}
     </div>
   );
 };

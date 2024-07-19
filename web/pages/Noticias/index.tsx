@@ -39,7 +39,7 @@ const NewsPage = () => {
       {filteredData.length > 0 ? (
         <>
           <div className="flex p-10">
-            <CardDeck news={filteredData} />
+            <CardDeck news={filteredData} showDeleteIcon={false} />
           </div>
           <PaginationButtons
             pageNumber={pageNumber}

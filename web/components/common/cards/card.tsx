@@ -3,10 +3,20 @@ import { CustomImage } from "../image";
 import { imageSrc, formatDate } from "@/utils/formatters";
 import { TiDelete } from "react-icons/ti";
 
-export const Card = ({ news, navigation, deletePost }: CardProps) => {
+export const Card = ({
+  news,
+  navigation,
+  deletePost,
+  showDeleteIcon,
+}: CardProps) => {
   return (
     <>
-      <TiDelete className="flex justify-end" onClick={() => deletePost(news)} />
+      {showDeleteIcon ? (
+        <TiDelete
+          className="flex justify-end"
+          onClick={() => deletePost(news)}
+        />
+      ) : null}
       <div className="xl:w-[full]" onClick={() => navigation(news.id)}>
         <div className="xl:h-[250px] h-[200px]">
           <CustomImage src={imageSrc(news.image)} alt="" objectFit="cover" />
