@@ -1,6 +1,5 @@
 import { InputProps } from "@/types/types";
 import { useState } from "react";
-import { useFormContext } from "react-hook-form";
 
 export const Toggle = ({ label, id, register, error }: InputProps) => {
   const [checked, setChecked] = useState(false);

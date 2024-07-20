@@ -110,6 +110,7 @@ export type ButtonProps = {
   action?: (() => void) | any;
   type?: "button" | "submit" | "reset";
   disable?: boolean;
+  loading?: boolean;
 };
 
 export type BodyProps = {
@@ -133,10 +134,12 @@ export type CardProps = {
   news: Post;
   navigation: (path: number) => void;
   deletePost: (post: Post) => void;
+  showDeleteIcon: boolean;
 };
 
 export type DeckCardProps = {
   news: Post[];
+  showDeleteIcon: boolean;
 };
 
 export type ModalProps = {
@@ -226,4 +229,9 @@ export type PaginationComponent = {
   pageNumber: number;
   setPageNumber: (pageNumber: number) => void;
   hasMore: boolean;
+};
+
+export type Error = {
+  status: number;
+  message: string;
 };

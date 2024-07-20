@@ -3,11 +3,10 @@ import { Card } from "./card";
 import { useRouter } from "next/router";
 import { usedRouters } from "@/types/routers";
 import { PagesRouters } from "@/types/enums";
-import { deleteImageFromFirebase } from "@/external/firebase/firebaseImageURL";
 import { removePost } from "@/external/api/postApi";
 import { useState } from "react";
 
-export const CardDeck = ({ news }: DeckCardProps) => {
+export const CardDeck = ({ news, showDeleteIcon }: DeckCardProps) => {
   const [newsState, setNewsState] = useState(news);
   const router = useRouter();
   const navigation = (path: number) => {
@@ -28,6 +27,7 @@ export const CardDeck = ({ news }: DeckCardProps) => {
         {newsState.map((noticia: Post, index: number) => (
           <div key={index}>
             <Card
+              showDeleteIcon={showDeleteIcon}
               news={noticia}
               navigation={navigation}
               deletePost={deletePost}

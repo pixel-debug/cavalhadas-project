@@ -12,6 +12,7 @@ const createImageOnFirebase = async (image: File): Promise<string> => {
     await uploadBytes(storageReference, image);
 
     const downloadURL = await getDownloadURL(storageReference);
+    console.log("download url", downloadURL);
     return downloadURL;
   } catch (error) {
     console.error("Error uploading image:", error);

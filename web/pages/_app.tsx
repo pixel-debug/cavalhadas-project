@@ -6,6 +6,8 @@ import { Header } from "@/components/basicPage/header";
 import { useRouter } from "next/router";
 import { AdminProvider } from "@/context/useAdminContext";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -15,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <AdminProvider>
+        <ToastContainer />
         <div className="flex flex-col min-h-screen">
           {!isLoginPage && <Header />}
           <Body>

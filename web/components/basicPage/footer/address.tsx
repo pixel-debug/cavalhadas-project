@@ -5,7 +5,10 @@ export const Address = () => {
         Venha nos ver!
       </p>
       <p className="font-montserrat xl:text-xm text-xs text-neutral-700">
-        Rua dos esportes, nº 18, Amarantina, Ouro Preto
+        Rua dos Esportes, n° 33 Amarantina - Ouro Preto/ MG
+      </p>
+      <p className="font-montserrat xl:text-xm text-xs text-neutral-700">
+        CEP 35.412-000
       </p>
     </div>
   );
