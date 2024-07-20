@@ -9,13 +9,15 @@ import { PagesRouters } from "@/types/enums";
 import { getPosts } from "@/external/api/postApi";
 import { useQuery } from "react-query";
 import { NoContent } from "@/components/common/noContent";
+import { useContext } from "react";
+import { AdminContext } from "@/context/useAdminContext";
 
 export default function Home() {
   const router = useRouter();
   const navigation = () => {
     router.push(usedRouters(PagesRouters.NEWS_PAGE));
   };
-
+  const { admin } = useContext(AdminContext);
   const title = BannerMockedTitle;
   const text = BannerMockedText;
 
@@ -33,7 +35,7 @@ export default function Home() {
         {news.length > 0 ? (
           <Box title={"Últimas noticias"}>
             <div className="flex flex-col items-center">
-              <CardDeck news={news} />
+              <CardDeck news={news} showDeleteIcon={admin ? true : false} />
               <div className="xl:w-1/6 w-1/3 mt-10">
                 <Button text={"Ver mais"} action={navigation} />
               </div>

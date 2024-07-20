@@ -1,5 +1,4 @@
 import { Checkbox } from "@/components/common/checkbox";
-import { ImageUpload } from "@/components/common/form/imagePreview";
 import { InputField } from "@/components/common/form/inputField";
 import { Toggle } from "@/components/common/form/toogle";
 import { TextArea } from "@/components/common/textArea";

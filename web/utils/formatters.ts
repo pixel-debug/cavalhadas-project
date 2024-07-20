@@ -41,3 +41,10 @@ export function getFilename(imageURL: string): string {
   }
   return "";
 }
+
+export function truncateFileName(fileName: string, maxLength = 15) {
+  if (fileName.length > maxLength) {
+    return `${fileName.substring(0, maxLength)}...`;
+  }
+  return fileName;
+}

@@ -1,5 +1,5 @@
 export const BannerMockedText =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur porttitor, ipsum et sollicitudin sollicitudin, neque odio rutrum mauris, sit amet egestas metus nulla sit amet";
+  '"Os cavaleiros assumem o lugar dos soldados nos dois lados da batalha, e fazem uma encenação dos principais acontecimentos, como o rapto de Floripes, a princesa moura. Dividida em 4 partes (apresentação, invasão, diplomacia e o casamento), os conflitos possuem reprodução com humor e leveza." ';
 export const BannerMockedTitle = "CAVALHADAS DE AMARANTINA";
 
 export const aboutUsData = {

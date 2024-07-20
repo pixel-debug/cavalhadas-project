@@ -6,22 +6,30 @@ import { createSponsor } from "@/external/api/sponsorApi";
 import { Form } from "../common/form";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { Loading } from "../common/loading";
+import useToast from "@/hooks/useToast";
 
 export const AddSponsor = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const { toastSuccess, toastError } = useToast();
 
   const { mutate } = useMutation(createSponsor, {
-    onSuccess: (data) => {
-      const message = "success";
-      alert(message);
+    onSuccess: () => {
+      toastSuccess("Patrocinador criado");
     },
-    onError: () => {
-      alert("there was an error");
+    onError: (error) => {
+      toastError(error as string);
     },
   });
 
   const handleSubmit = async (data: Sponsor) => {
+    setLoading(true);
+
     mutate(data);
+    setLoading(false);
   };
 
   const sponsorFormFields = [
@@ -36,14 +44,15 @@ export const AddSponsor = () => {
   return (
     <>
       <IoIosArrowDropleft
-        className="absolute top-20 left-10 h-10 w-10"
+        className="absolute top-20 left-5 xl:h-10 xl:w-10 h-8 w-8"
         onClick={goBack}
       />
-      <div className="mt-10 flex items-center">
+      <div className="xl:mt-20 mt-0 flex items-center xl:w-[80%] w-full">
         <Box title="Preencha as informações do patrocinador">
           <Form<Sponsor> fields={sponsorFormFields} onSubmit={handleSubmit} />
         </Box>
       </div>
+      {loading ? <Loading /> : null}
     </>
   );
 };

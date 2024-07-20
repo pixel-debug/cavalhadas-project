@@ -20,16 +20,14 @@ const NewsDetails = () => {
   console.log(data);
   return (
     data && (
-      <div className="overflow-auto pt-10 w-full h-full">
-        <div className="flex items-center">
-          <Box title="">
-            <NewsContent
-              selectedNews={data}
-              openImage={setModal}
-              isAdmin={admin ? true : false}
-            />
-          </Box>
-        </div>
+      <div className="xl:mt-20 mt-16 flex items-center xl:w-[80%] w-full">
+        <Box title="">
+          <NewsContent
+            selectedNews={data}
+            openImage={setModal}
+            isAdmin={admin ? true : false}
+          />
+        </Box>
         {modal && (
           <Modal closeModal={() => setModal(false)}>
             <div className="w-full h-full p-10">

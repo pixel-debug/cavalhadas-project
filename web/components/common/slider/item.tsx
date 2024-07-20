@@ -5,10 +5,10 @@ import { formatDate, imageSrc } from "@/utils/formatters";
 export const Item = ({ item, itemAction }: SliderItemProps) => {
   return (
     <div
-      className="xl:mx-10 mx-2 flex flex-col"
+      className="xl:mx-10 mx-2 flex flex-col items-center"
       onClick={() => itemAction(item)}
     >
-      <div className="border-4 border-blue-500 rounded-full bg-neutral-500 xl:h-[35vh] md:h-[15vh] h-[20vh]">
+      <div className="border-4 border-blue-500 rounded-full bg-neutral-500 xl:h-[35vh] xl:w-[35vh] md:h-[15vh] md:w-[15vh] h-[15vh] w-[15vh]">
         <CustomImage src={imageSrc(item.image)} alt={"people"} rounded />
       </div>
       <div className="flex flex-col mt-3 items-center">
