@@ -1,14 +1,11 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { UploadProps } from "@/types/types";
 
-interface ImageUploadProps {
-  register: UseFormRegisterReturn;
-}
-
-export const ImageUpload: React.FC<ImageUploadProps> = ({ register }) => {
+export const ImageUpload = ({ setValue }: UploadProps) => {
+  const [image, setImage] = useState<File>();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   const hiddenFileInput = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
@@ -18,6 +15,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ register }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImagePreview(URL.createObjectURL(e.target.files[0]));
+      setValue("image", e.target.files[0]);
     }
   };
 
@@ -26,7 +24,6 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ register }) => {
       <input
         id="image"
         type="file"
-        {...register}
         onChange={handleChange}
         ref={hiddenFileInput}
         style={{ display: "none" }}

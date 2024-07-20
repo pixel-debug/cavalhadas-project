@@ -9,8 +9,10 @@ export const Form = <T extends FieldValues>({
 }: DynamicFormProps<T>) => {
   const handleForm = async (data: T) => {
     let imageData = data.image;
-    if (data.image instanceof FileList) {
-      const file = data.image[0];
+
+    if (data.image instanceof File) {
+      console.log(typeof data.image);
+      const file = data.image;
       imageData = await createImageOnFirebase(file);
     }
     onSubmit({ ...data, image: imageData });

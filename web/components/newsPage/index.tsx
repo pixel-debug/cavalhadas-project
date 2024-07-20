@@ -1,7 +1,7 @@
 import { NewsContentProps, PDF, Post } from "@/types/types";
 import { CustomImage } from "../common/image";
 import { useForm } from "react-hook-form";
-import { formatDate, imageSrc } from "@/utils/formatters";
+import { formatDate, imageSrc, truncateFileName } from "@/utils/formatters";
 import { useMutation } from "react-query";
 import { updatePost } from "@/external/api/postApi";
 import { Button } from "../common/button";
@@ -44,6 +44,9 @@ export const NewsContent = ({
       setValue(field, newValue);
     }
   };
+  const formatContent = (text: string) => {
+    return text.replace(/(.{50})/g, "$1-\n");
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,12 +65,17 @@ export const NewsContent = ({
         {title}
       </p>
       <p
-        className="font-montserrat text-xm xl:text-md text-neutral-900"
+        className="font-montserrat text-sm xl:text-md text-neutral-900 break-words space-y-4"
         contentEditable={isAdmin ? "true" : "false"}
         onBlur={(e) => handleChange(e, "content")}
         suppressContentEditableWarning={true}
       >
-        {content}
+        {content.split("\n").map((paragraph, index) => (
+          <span key={index}>
+            {paragraph}
+            <br />
+          </span>
+        ))}
       </p>
       {isAdmin && (
         <button
@@ -80,9 +88,9 @@ export const NewsContent = ({
       <div className="flex flex-row justify-center mt-10">
         {pdfs && pdfs.length > 0
           ? pdfs.map((pdf, index) => (
-              <div className="xl:w-[40%] mr-5" key={index}>
+              <div className="xl:w-[40%] w-[40%] mr-5" key={index}>
                 <Button
-                  text={pdf.fileName}
+                  text={truncateFileName(pdf.fileName)}
                   action={() => downloadDocument(pdf)}
                 />
               </div>

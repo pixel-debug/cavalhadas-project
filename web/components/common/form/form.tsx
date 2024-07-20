@@ -17,13 +17,14 @@ export const DynamicForm = <T extends FieldValues>({
     setValue,
   } = useForm<T>();
 
+  console.log(fields);
   const hasImageField = fields.some((field) => field.name === "image");
   const hasPdfField = fields.some((field) => field.name === "pdf");
 
   const handleForm = async (data: T) => {
-    // onSubmit(data);
-    // reset();
     console.log(data);
+    onSubmit(data);
+    reset();
   };
 
   return (
@@ -61,7 +62,7 @@ export const DynamicForm = <T extends FieldValues>({
       >
         {hasImageField && (
           <div className="flex flex-col items-center w-2/5">
-            <ImageUpload register={register("image" as Path<T>)} />
+            <ImageUpload setValue={setValue} />
           </div>
         )}
         {hasPdfField && (

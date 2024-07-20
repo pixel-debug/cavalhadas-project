@@ -29,7 +29,7 @@ const Inputs = {
       placeholder: "",
     },
     {
-      type: "toogle",
+      type: "toggle",
       label: "Cavaleiro",
       id: "isMale",
       name: "isMale",

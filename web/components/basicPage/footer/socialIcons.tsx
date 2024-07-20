@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
 
 export const SocialIcons = () => {
   return (
@@ -9,7 +10,7 @@ export const SocialIcons = () => {
       </p>
       <div className="flex flex-row gap-4">
         <a
-          href="https://facebook.com"
+          href="https://www.facebook.com/p/Associa%C3%A7%C3%A3o-dos-Cavaleiros-Mestre-Nico-100064799763363/"
           target="_blank"
           rel="noopener noreferrer"
           className="xl:text-md text-xm transition-colors"
@@ -18,16 +19,7 @@ export const SocialIcons = () => {
         </a>
 
         <a
-          href="https://twitter.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="xl:text-md text-xm transition-colors"
-        >
-          <FaTwitter />
-        </a>
-
-        <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/cavalhadasamarantina/"
           target="_blank"
           rel="noopener noreferrer"
           className="xl:text-md text-xm transition-colors"
@@ -36,12 +28,12 @@ export const SocialIcons = () => {
         </a>
 
         <a
-          href="https://linkedin.com"
+          href="mailto:associacaodoscavaleirosmestrenico@gmail.com?subject=SendMail&body=Description"
           target="_blank"
           rel="noopener noreferrer"
           className="xl:text-md text-xm transition-colors"
         >
-          <FaLinkedin />
+          <MdOutlineMailOutline />
         </a>
       </div>
     </div>
