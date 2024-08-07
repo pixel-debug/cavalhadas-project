@@ -11,6 +11,7 @@ import { useQuery } from "react-query";
 import { NoContent } from "@/components/common/noContent";
 import { useContext } from "react";
 import { AdminContext } from "@/context/useAdminContext";
+import Head from "next/head";
 
 export default function Home() {
   const router = useRouter();
@@ -30,6 +31,10 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Cavalhadas Amarantina</title>
+        <meta name="description" content="Cavalhadas Amarantina" />
+      </Head>
       <Banner title={title} subtitle={text} hasButton isMainPage />
       <div className="flex items-center justify-center">
         {news.length > 0 ? (
