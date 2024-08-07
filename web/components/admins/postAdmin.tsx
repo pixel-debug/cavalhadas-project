@@ -19,7 +19,7 @@ export const WritePost = () => {
 
   const { toastSuccess, toastError } = useToast();
   const { mutate } = useMutation(createPost, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       toastSuccess("Post criado");
       router.back();
     },

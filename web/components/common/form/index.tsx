@@ -11,7 +11,6 @@ export const Form = <T extends FieldValues>({
     let imageData = data.image;
 
     if (data.image instanceof File) {
-      console.log(typeof data.image);
       const file = data.image;
       imageData = await createImageOnFirebase(file);
     }

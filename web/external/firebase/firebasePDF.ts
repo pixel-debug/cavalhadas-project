@@ -15,7 +15,6 @@ const createPDFsOnFirebase = async (files: File[]): Promise<string[]> => {
 
       const downloadURL = await getDownloadURL(storageReference);
       downloadURLs.push(downloadURL);
-      console.log(downloadURLs);
     }
 
     return downloadURLs;

@@ -12,7 +12,6 @@ export const getMembers = async (): Promise<Member[]> => {
 
 export const createMember = async (data: Member) => {
   try {
-    console.log(data);
     const responseData = await api<Member>("/members", "POST", data);
     return responseData;
   } catch (error) {

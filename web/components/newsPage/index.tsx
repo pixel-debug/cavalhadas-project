@@ -5,6 +5,8 @@ import { formatDate, imageSrc, truncateFileName } from "@/utils/formatters";
 import { useMutation } from "react-query";
 import { updatePost } from "@/external/api/postApi";
 import { Button } from "../common/button";
+import useToast from "@/hooks/useToast";
+import { useRouter } from "next/router";
 
 export const NewsContent = ({
   selectedNews,
@@ -12,7 +14,8 @@ export const NewsContent = ({
   isAdmin,
 }: NewsContentProps) => {
   const { id, title, content, image, createdAt, pdfs } = selectedNews;
-
+  const { toastSuccess, toastError } = useToast();
+  const router = useRouter();
   const { handleSubmit, setValue } = useForm<Post>({
     defaultValues: {
       title,
@@ -20,7 +23,15 @@ export const NewsContent = ({
     },
   });
 
-  const { mutate } = useMutation((postData: Post) => updatePost(id, postData));
+  const { mutate } = useMutation((postData: Post) => updatePost(id, postData), {
+    onSuccess: () => {
+      toastSuccess("Post atualizado");
+      router.back();
+    },
+    onError: (error) => {
+      toastError("Erro ao atualizar post: " + error);
+    },
+  });
 
   const onSubmit = (data: Post) => {
     mutate(data);
@@ -43,9 +54,6 @@ export const NewsContent = ({
       const newValue = event.target.textContent || "";
       setValue(field, newValue);
     }
-  };
-  const formatContent = (text: string) => {
-    return text.replace(/(.{50})/g, "$1-\n");
   };
 
   return (

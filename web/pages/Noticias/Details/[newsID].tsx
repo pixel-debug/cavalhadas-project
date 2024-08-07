@@ -17,7 +17,7 @@ const NewsDetails = () => {
   const { admin } = useContext(AdminContext);
 
   const { data } = useQuery(["posts", newsID], () => getPost(Number(newsID)));
-  console.log(data);
+
   return (
     data && (
       <div className="xl:mt-20 mt-16 flex items-center xl:w-[80%] w-full">

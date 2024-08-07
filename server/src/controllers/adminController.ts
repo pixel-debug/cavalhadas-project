@@ -86,12 +86,18 @@ export class AdminController implements IController<AdminResponse> {
     try {
       const { email, trinco } = req.body;
       const admin = await this.adminUseCase.findByEmail(email);
-      if (!admin) throw new Error(HttpMessages.BAD_REQUEST);
+      if (!admin) {
+        return res
+          .status(HttpStatus.BAD_REQUEST)
+          .json({ error: HttpMessages.EMAIL_NOT_FOUND });
+      }
 
       const verifyPass = await bcrypt.compare(trinco, admin.trinco);
 
       if (!verifyPass) {
-        throw new Error("E-mail ou senha inválidos");
+        return res
+          .status(HttpStatus.BAD_REQUEST)
+          .json({ error: HttpMessages.WRONG_PASSWORD });
       }
       const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET ?? "", {
         expiresIn: "8h",
@@ -104,7 +110,7 @@ export class AdminController implements IController<AdminResponse> {
         token: token,
       });
     } catch (error) {
-      console.error(error);
+      console.error("error", error);
       res
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
         .json({ error: HttpMessages.INTERNAL_SERVER_ERROR });

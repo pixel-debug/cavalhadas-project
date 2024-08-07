@@ -7,7 +7,7 @@ import { Address } from "./address";
 
 export const FooterComponent = () => {
   return (
-    <div className="mt-10 bg-blue-200 p-5">
+    <div className="mt-10 bg-blue-200 px-5 pt-5">
       <div className="flex flex-row justify-between">
         <div className="lg:w-[40vh] w-0">
           <Image src={redKnight} alt="Follow us on Twitter" />
@@ -21,6 +21,14 @@ export const FooterComponent = () => {
           <Image src={blueKnight} alt="Follow us on Twitter" />
         </div>
       </div>
+      <a
+        href="https://github.com/pixel-debug"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="xl:text-xm text-sm transition-colors"
+      >
+        <span>By Pixel-Debug</span>
+      </a>
     </div>
   );
 };

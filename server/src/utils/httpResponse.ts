@@ -18,4 +18,6 @@ export enum HttpMessages {
   NOT_FOUND = "Not Found",
   INTERNAL_SERVER_ERROR = "Internal Server Error",
   SERVICE_UNAVAILABLE = "Service Unavailable",
+  EMAIL_NOT_FOUND = "Email not found",
+  WRONG_PASSWORD = "Wrong password",
 }

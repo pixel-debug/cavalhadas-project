@@ -17,12 +17,10 @@ export const DynamicForm = <T extends FieldValues>({
     setValue,
   } = useForm<T>();
 
-  console.log(fields);
   const hasImageField = fields.some((field) => field.name === "image");
   const hasPdfField = fields.some((field) => field.name === "pdf");
 
   const handleForm = async (data: T) => {
-    console.log(data);
     onSubmit(data);
     reset();
   };
