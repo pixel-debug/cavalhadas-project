@@ -1,23 +1,17 @@
 import { Button } from "@/components/common/button";
-import { IoIosArrowDropleft } from "react-icons/io";
+import { IoIosArrowDropleft, IoMdEyeOff } from "react-icons/io";
 import { Input } from "@/components/common/input";
 import { AdminContext } from "@/context/useAdminContext";
 import { Admin } from "@/types/types";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import useToast from "@/hooks/useToast";
 import { usedRouters } from "@/types/routers";
 import { IoEye } from "react-icons/io5";
-import { IoMdEyeOff } from "react-icons/io";
+import Head from "next/head";
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<Admin>();
+  const { register, handleSubmit, reset } = useForm<Admin>();
 
   const { handleLogin } = useContext(AdminContext);
   const router = useRouter();
@@ -46,6 +40,10 @@ const Login = () => {
 
   return (
     <>
+      <Head>
+        <title>Login</title>
+        <meta name="description" content="Login" />
+      </Head>
       <IoIosArrowDropleft
         className="absolute top-10 left-10 h-10 w-10"
         onClick={goBack}

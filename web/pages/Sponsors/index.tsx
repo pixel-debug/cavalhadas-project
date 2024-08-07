@@ -6,6 +6,7 @@ import { AdminContext } from "@/context/useAdminContext";
 import { getSponsors } from "@/external/api/sponsorApi";
 import { PageTitles, PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { useQuery } from "react-query";
@@ -24,6 +25,10 @@ const SponsorsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Patrocinadores</title>
+        <meta name="description" content="Sponsors" />
+      </Head>
       <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
         {PageTitles.SPONSORS}
       </p>

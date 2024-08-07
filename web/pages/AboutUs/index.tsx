@@ -7,6 +7,7 @@ import { AdminContext } from "@/context/useAdminContext";
 import { getMembers } from "@/external/api/memberApi";
 import { PageTitles, PagesRouters } from "@/types/enums";
 import { usedRouters } from "@/types/routers";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { useQuery } from "react-query";
@@ -22,6 +23,10 @@ const AboutUsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Sobre nós</title>
+        <meta name="description" content="About us" />
+      </Head>
       <p className="py-10 justify-center flex text-red-900 font-montserrat font-bold text-3xl">
         {PageTitles.ABOUT_US}
       </p>

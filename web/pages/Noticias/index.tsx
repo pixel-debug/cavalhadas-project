@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import { NoContent } from "@/components/common/noContent";
 import { PaginationButtons } from "../../components/newsPage/paginationButtons";
 import { Post } from "@/types/types";
+import Head from "next/head";
 
 const NewsPage = () => {
   const router = useRouter();
@@ -43,13 +44,14 @@ const NewsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Notícias</title>
+        <meta name="description" content="News" />
+      </Head>
       {filteredData.length > 0 ? (
         <>
           <div className="flex p-10">
-            <CardDeck
-              news={filteredData}
-              showDeleteIcon={admin ? true : false}
-            />
+            <CardDeck news={filteredData} showDeleteIcon={!!admin} />
           </div>
           <PaginationButtons
             pageNumber={pageNumber}
